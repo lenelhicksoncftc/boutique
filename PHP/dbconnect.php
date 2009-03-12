@@ -8,14 +8,9 @@ $dbuser = 'storeuser';
 $dbpassword = '';
 
 // Setup connection
-$dsn = 'mysql:dbname=$dbname;host=$dbhost';
-$dboptions = array(PDO::ATTR_PERSISTENT => true);
 
-try {
-    $dbh = new PDO($dsn, $dbuser, $dbpassword, $dboptions);
-} catch (PDOException $e) {
-    $message = 'Connection failed: ' . $e->getMessage();
-	exit();
-}
+$dbconnection = mysql_pconnect($dbhost,$dbuser,$dbpassword) or die("Unable to connect to database");
+mysql_select_db($dbname,$dbconnection) or die(mysql_error($dbconnection));
+
 
 ?>
