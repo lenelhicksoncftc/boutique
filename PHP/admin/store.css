@@ -1,0 +1,82 @@
+body {
+	background-color: white;
+	color: rgb(64,70,34);
+}
+
+a:link {
+	color: rgb(0,72,144);	
+}
+
+a:visited {
+	color: rgb(69,112,144);
+}
+
+a:hover {
+	color: rgb(98,110,134);
+}
+
+p {
+	font-family: "Lucida Grande",Verdana,sans-serif;
+	font-size: 12pt;
+}
+
+p.error {
+	color: rgb(155,46,46);
+	font-weight: bold;
+}
+
+p.info {
+	color: rgb(64,131,34);
+	font-weight: bold;
+}
+
+p.copyright {
+	font-family: "Lucida Grande",Verdana,sans-serif;
+	font-size: 10pt;
+}
+
+h2 {
+	font-family: "Lucida Grande",Verdana,sans-serif;
+	background-color: rgb(235, 235, 191);
+}
+
+td {
+	font-family: "Lucida Grande",Verdana,sans-serif;
+	font-size: 12pt;
+}
+
+fieldset {
+	border: 2px solid rgb(0,72,144);
+	width: 320px;
+}
+
+input.logon {
+	font-family: "Lucida Grande",Verdana,sans-serif;
+	font-size: 16pt;
+	color: rgb(0,72,144);
+	border: 1px solid #000000;
+}
+
+input.button {
+	font-family: "Lucida Grande",Verdana,sans-serif;
+	color: rgb(0,72,144);
+	background: rgb(235, 235, 191);
+	border: 1px solid rgb(0,72,144);
+}
+
+#wrapper {
+	width: 1000px;
+	margin: 0 auto;
+}
+
+#content {
+	position: relative;
+	width: 980px;
+	margin: 0 auto;
+	padding: 20px 0 20px 0;
+	background: #dfefdf;
+	-webkit-box-shadow: 0px 3px 6px #364036;
+	-moz-box-shadow: 0px 3px 6px #364036;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+}
