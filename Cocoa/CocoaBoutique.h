@@ -41,7 +41,6 @@
 
 @interface NSObject (CocoaBoutiqueDelegateMethods)
 - (NSString *)storeURL;
-- (BOOL)paymentForReal;
 - (NSString *)productName;
 - (void)serverError:(NSString *)error;
 - (AquaticPrime *)licenseValidator;
