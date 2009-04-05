@@ -19,7 +19,7 @@
 }
 
 - (id)init {
-	if (![super initWithWindowNibName:@"Store"]) {
+	if (![super initWithWindowNibName:@"Boutique"]) {
 		return nil;
 	}
 	return self;
