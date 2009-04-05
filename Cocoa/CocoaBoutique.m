@@ -58,16 +58,8 @@
 	NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
 	[urlRequest setHTTPMethod:@"POST"];
 	
-	NSMutableString *body = [[NSMutableString alloc] init];
-	if ([_delegate paymentForReal]) {
-		[body appendString:@"paymentType=Authorization&product="];
-	} else {
-		[body appendString:@"paymentType=Authorization&product="];
-	}
-	[body appendString:[_delegate productName]];
-	
-	[body appendFormat:
-	 @"&firstName=%@&lastName=%@&creditCardType=%@&creditCardNumber=%@&expDateMonth=%@&expDateYear=%@&cvv2Number=%@&address1=%@&city=%@&state=%@&postal=%@&email=%@&company=%@&phone=%@",
+	NSString *body = [NSString stringWithFormat:@"product=%@&firstName=%@&lastName=%@&creditCardType=%@&creditCardNumber=%@&expDateMonth=%@&expDateYear=%@&cvv2Number=%@&address1=%@&city=%@&state=%@&postal=%@&email=%@&company=%@&phone=%@",
+	 [_delegate productName],
 	 [[firstNameField stringValue] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
 	 [[lastNameField stringValue] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
 	 [[[cardTypePopUp selectedItem] title] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
