@@ -13,6 +13,7 @@
 		4C4888E40F830A0A009329F0 /* CocoaBoutique.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4888E30F830A0A009329F0 /* CocoaBoutique.m */; };
 		4C4889090F830CD9009329F0 /* AquaticPrime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C4889080F830CD9009329F0 /* AquaticPrime.framework */; };
 		4C48890F0F830CFF009329F0 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C48890E0F830CFF009329F0 /* AddressBook.framework */; };
+		4C8207B80F8867C40001104D /* Boutique.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C8207B70F8867C40001104D /* Boutique.xib */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -48,6 +49,7 @@
 		4C4889080F830CD9009329F0 /* AquaticPrime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AquaticPrime.framework; sourceTree = "<group>"; };
 		4C48890B0F830CE1009329F0 /* AquaticPrime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AquaticPrime.h; sourceTree = "<group>"; };
 		4C48890E0F830CFF009329F0 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		4C8207B70F8867C40001104D /* Boutique.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Boutique.xib; path = ../Boutique.xib; sourceTree = SOURCE_ROOT; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* BoutiqueDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoutiqueDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -130,6 +132,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4C8207B70F8867C40001104D /* Boutique.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
@@ -192,6 +195,7 @@
 			files = (
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
+				4C8207B80F8867C40001104D /* Boutique.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,8 +11,11 @@
 
 @interface AppController : NSObject {
 	CocoaBoutique *boutique;
+	IBOutlet NSMenuItem *purchaseMenu;
+	IBOutlet NSMenu *mainMenu;
 }
 
 - (IBAction)showBoutique:(id)sender;
+- (NSString *)pathToLicenseFile;
 
 @end
