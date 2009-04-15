@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+    "http://www.w3.org/TR/1998/REC-html40-19980424/loose.dtd">
+<html><head>
+    <title>CocoaBoutique.h</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ <meta name="generator" content="HeaderDoc" />
+<style type="text/css"><!--.keyword {background:#ffffff; color:#761550;}.template {background:#ffffff; color:#761550;}.number {background: #ffffff; color:#0000ff;}.function {background:#ffffff; color:#000000;}.string {background: #ffffff; color:#891315;}.preprocessor {background:#ffffff; color:#236e25}.comment {background:#ffffff; color:#236e25}.char {background: #ffffff; color:#0000ff;}.var {background:#ffffff; color:#000000;}.type {background:#ffffff; color:#761550;}.param {background:#ffffff; color:#000000;}a:link {text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: small; color: #0000ff;}a:visited {text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: small; color: #0000ff;}a:visited:hover {text-decoration: underline; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: small; color: #ff6600;}a:active {text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: small; color: #ff6600;}a:hover {text-decoration: underline; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: small; color: #ff6600;}h4 {text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: tiny; font-weight: bold;}body {text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: 10pt;}--></style></head><body bgcolor="#ffffff">
+<a name="top"></a>
+<a name="//apple_ref/doc/header/CocoaBoutique.h" title="CocoaBoutique.h"></a>
+<hr><table border="0"  cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5"><h1><a name="CocoaBoutique.h">CocoaBoutique.h</a></h1>
+</td></tr></table><hr><p></p><p></p><hr><br><h2>Methods</h2>
+<a name="HeaderDoc_methods"></a>
+<dl>
+<dt><tt><a href="CompositePage.html#//apple_ref/doc/compositePage/c/instm/licenseValidator" target="_top">-licenseValidator </a></tt></dt>
+<dd>Delegate method.
+</dd>
+<dt><tt><a href="CompositePage.html#//apple_ref/doc/compositePage/c/instm/productName" target="_top">-productName </a></tt></dt>
+<dd>Delegate method. Returns the name of the product
+</dd>
+<dt><tt><a href="CompositePage.html#//apple_ref/doc/compositePage/c/instm/serverError:" target="_top">-serverError:</a></tt></dt>
+<dd>Delegate method. Called when an error occurs during the communication with web server
+</dd>
+<dt><tt><a href="CompositePage.html#//apple_ref/doc/compositePage/c/instm/storeURL" target="_top">-storeURL</a></tt></dt>
+<dd>Delegate method. Returns the URL for the purchaseSoftware.php
+</dd>
+<dt><tt><a href="CompositePage.html#//apple_ref/doc/compositePage/c/instm/validLicense:withLicenseData:" target="_top">-validLicense:withLicenseData:</a></tt></dt>
+<dd>Delegate method. Called when license data has been retrieved from the web server
+</dd>
+</dl>
+<hr><!-- headerDoc=instm;  uid=//apple_ref/doc/compositePage/c/instm/licenseValidator;  name=licenseValidator -->
+<a name="//apple_ref/doc/compositePage/c/instm/licenseValidator"></a>
+<table border="0"  cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5"><h3><a name="licenseValidator">licenseValidator </a></h3>
+</td></tr></table><hr><p><!-- begin abstract -->Delegate method.
+<!-- end abstract --></p>
+<p></p><pre>- (<!-- a logicalPath="//apple_ref/c/cl/AquaticPrime //apple_ref/c/tdef/AquaticPrime //apple_ref/c/tag/AquaticPrime //apple_ref/c/econst/AquaticPrime //apple_ref/c/struct/AquaticPrime //apple_ref/c/clconst/AquaticPrime //apple_ref/c/intf/AquaticPrime" --><span class="type">AquaticPrime</span><!-- /a --> <span class="type">*</span>)<span class="var">licenseValidator</span>;  </pre>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font>
+</h5><p><!-- begin discussion -->Returns an AquaticPrime object.  It should be setup using the obfuscated public key.
+<!-- end discussion --></p>
+<p></p><hr><!-- headerDoc=instm;  uid=//apple_ref/doc/compositePage/c/instm/productName;  name=productName -->
+<a name="//apple_ref/doc/compositePage/c/instm/productName"></a>
+<table border="0"  cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5"><h3><a name="productName">productName </a></h3>
+</td></tr></table><hr><p><!-- begin abstract -->Delegate method. Returns the name of the product
+<!-- end abstract --></p>
+<p></p><pre>- (<!-- a logicalPath="//apple_ref/c/cl/NSString //apple_ref/c/tdef/NSString //apple_ref/c/tag/NSString //apple_ref/c/econst/NSString //apple_ref/c/struct/NSString //apple_ref/c/clconst/NSString //apple_ref/c/intf/NSString" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<span class="var">productName</span>;  </pre>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font>
+</h5><p><!-- begin discussion -->The returned string is looked up in the products table of the store's MySQL database. A failure to find the product name will return an error.
+<!-- end discussion --></p>
+<p></p><hr><!-- headerDoc=instm;  uid=//apple_ref/doc/compositePage/c/instm/serverError:;  name=serverError: -->
+<a name="//apple_ref/doc/compositePage/c/instm/serverError:"></a>
+<table border="0"  cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5"><h3><a name="serverError:">serverError:</a></h3>
+</td></tr></table><hr><p><!-- begin abstract -->Delegate method. Called when an error occurs during the communication with web server
+<!-- end abstract --></p>
+<p></p><pre>- (<!-- a logicalPath="//apple_ref/c/cl/void //apple_ref/c/tdef/void //apple_ref/c/tag/void //apple_ref/c/econst/void //apple_ref/c/struct/void //apple_ref/c/clconst/void //apple_ref/c/intf/void" --><span class="type">void</span><!-- /a -->)<!-- a logicalPath="//apple_ref/c/instm/serverError //apple_ref/c/clm/serverError //apple_ref/c/intfcm/serverError //apple_ref/c/intfm/serverError //apple_ref/c/func/serverError //apple_ref/c/ftmplt/serverError //apple_ref/c/defn/serverError //apple_ref/c/macro/serverError" --><span class="function">serverError</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/c/cl/NSString //apple_ref/c/tdef/NSString //apple_ref/c/tag/NSString //apple_ref/c/econst/NSString //apple_ref/c/struct/NSString //apple_ref/c/clconst/NSString //apple_ref/c/intf/NSString" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<span class="var">error</span>;  </pre>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<dl>
+<dt><code>error </code></dt><dd>A string containing the error reported</dd>
+</dl>
+<p></p><hr><!-- headerDoc=instm;  uid=//apple_ref/doc/compositePage/c/instm/storeURL;  name=storeURL -->
+<a name="//apple_ref/doc/compositePage/c/instm/storeURL"></a>
+<table border="0"  cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5"><h3><a name="storeURL">storeURL</a></h3>
+</td></tr></table><hr><p><!-- begin abstract -->Delegate method. Returns the URL for the purchaseSoftware.php
+<!-- end abstract --></p>
+<p></p><pre>- (<!-- a logicalPath="//apple_ref/c/cl/NSString //apple_ref/c/tdef/NSString //apple_ref/c/tag/NSString //apple_ref/c/econst/NSString //apple_ref/c/struct/NSString //apple_ref/c/clconst/NSString //apple_ref/c/intf/NSString" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<span class="var">storeURL</span>;  </pre>
+<p></p><hr><!-- headerDoc=instm;  uid=//apple_ref/doc/compositePage/c/instm/validLicense:withLicenseData:;  name=validLicense:withLicenseData: -->
+<a name="//apple_ref/doc/compositePage/c/instm/validLicense:withLicenseData:"></a>
+<table border="0"  cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5"><h3><a name="validLicense:withLicenseData:">validLicense:withLicenseData:</a></h3>
+</td></tr></table><hr><p><!-- begin abstract -->Delegate method. Called when license data has been retrieved from the web server
+<!-- end abstract --></p>
+<p></p><pre>- (<!-- a logicalPath="//apple_ref/c/cl/void //apple_ref/c/tdef/void //apple_ref/c/tag/void //apple_ref/c/econst/void //apple_ref/c/struct/void //apple_ref/c/clconst/void //apple_ref/c/intf/void" --><span class="type">void</span><!-- /a -->)<!-- a logicalPath="//apple_ref/c/instm/validLicense //apple_ref/c/clm/validLicense //apple_ref/c/intfcm/validLicense //apple_ref/c/intfm/validLicense //apple_ref/c/func/validLicense //apple_ref/c/ftmplt/validLicense //apple_ref/c/defn/validLicense //apple_ref/c/macro/validLicense" --><span class="function">validLicense</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/c/cl/BOOL //apple_ref/c/tdef/BOOL //apple_ref/c/tag/BOOL //apple_ref/c/econst/BOOL //apple_ref/c/struct/BOOL //apple_ref/c/clconst/BOOL //apple_ref/c/intf/BOOL" --><span class="type">BOOL</span><!-- /a -->)<span class="param">valid</span> <!-- a logicalPath="//apple_ref/c/instm/withLicenseData //apple_ref/c/clm/withLicenseData //apple_ref/c/intfcm/withLicenseData //apple_ref/c/intfm/withLicenseData //apple_ref/c/func/withLicenseData //apple_ref/c/ftmplt/withLicenseData //apple_ref/c/defn/withLicenseData //apple_ref/c/macro/withLicenseData" --><span class="function">withLicenseData</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/c/cl/NSData //apple_ref/c/tdef/NSData //apple_ref/c/tag/NSData //apple_ref/c/econst/NSData //apple_ref/c/struct/NSData //apple_ref/c/clconst/NSData //apple_ref/c/intf/NSData" --><span class="type">NSData</span><!-- /a --> <span class="type">*</span>)<span class="var">licenseData</span>;  </pre>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<dl>
+<dt><code>valid </code></dt><dd>Is the license data valid?</dd>
+<dt><code>licenseData </code></dt><dd>The AquaticPrime license data</dd>
+</dl>
+<p></p><p>Last Updated: Tuesday, April 14, 2009
+</p></body></html>
