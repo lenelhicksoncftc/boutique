@@ -59,7 +59,7 @@
 /*!
     @method     serverError:
     @abstract   Delegate method. Called when an error occurs during the communication with web server
-	@param error A string containing the error reported
+    @param error A string containing the error reported
 */
 
 - (void)serverError:(NSString *)error;
@@ -75,8 +75,8 @@
 /*!
     @method     validLicense:withLicenseData:
     @abstract   Delegate method. Called when license data has been retrieved from the web server
-	@param valid Is the license data valid?
-	@param licenseData The AquaticPrime license data
+    @param valid Is the license data valid?
+    @param licenseData The AquaticPrime license data
 */
 
 - (void)validLicense:(BOOL)valid withLicenseData:(NSData *)licenseData;
