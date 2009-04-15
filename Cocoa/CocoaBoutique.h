@@ -40,10 +40,45 @@
 @end
 
 @interface NSObject (CocoaBoutiqueDelegateMethods)
+
+/*!
+    @method     storeURL
+    @abstract   Delegate method. Returns the URL for the purchaseSoftware.php
+*/
+
 - (NSString *)storeURL;
+
+/*!
+    @method     productName
+    @abstract   Delegate method. Returns the name of the product
+    @discussion The returned string is looked up in the products table of the store's MySQL database. A failure to find the product name will return an error.
+*/
+
 - (NSString *)productName;
+
+/*!
+    @method     serverError:
+    @abstract   Delegate method. Called when an error occurs during the communication with web server
+	@param error A string containing the error reported
+*/
+
 - (void)serverError:(NSString *)error;
+
+/*!
+    @method     licenseValidator
+    @abstract   Delegate method.
+    @discussion Returns an AquaticPrime object.  It should be setup using the obfuscated public key.
+*/
+
 - (AquaticPrime *)licenseValidator;
+
+/*!
+    @method     validLicense:withLicenseData:
+    @abstract   Delegate method. Called when license data has been retrieved from the web server
+	@param valid Is the license data valid?
+	@param licenseData The AquaticPrime license data
+*/
+
 - (void)validLicense:(BOOL)valid withLicenseData:(NSData *)licenseData;
 @end
 
