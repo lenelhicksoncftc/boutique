@@ -80,5 +80,13 @@
 */
 
 - (void)validLicense:(BOOL)valid withLicenseData:(NSData *)licenseData;
+
+/*!
+ @method     overrideSSL
+ @abstract   Delegate method. Indicates that SSL should not be required for connecting to the online store.  Useful for development and testing.
+ */
+
+- (BOOL)overrideSSL;
+
 @end
 

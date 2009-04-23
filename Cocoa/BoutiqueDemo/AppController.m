@@ -98,4 +98,9 @@
 	}
 }
 
+- (BOOL)overrideSSL {
+	// Optional delegate method to override SSL requirement
+	return NO;
+}
+
 @end

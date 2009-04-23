@@ -54,7 +54,14 @@
 }
 
 - (IBAction)processOrder:(id)sender {
-	NSURL *url = [NSURL URLWithString:[_delegate storeURL]];
+	NSString *storeURL = [_delegate storeURL];
+	if (![[storeURL substringWithRange:NSMakeRange(0,8)] isEqualToString:@"https://"]  &&
+		(![_delegate respondsToSelector:@selector(overrideSSL)]  || ![_delegate overrideSSL])) {
+			NSAlert *alert = [NSAlert alertWithMessageText:@"Error" defaultButton:nil alternateButton:nil otherButton:nil informativeTextWithFormat:@"Connection does not use SSL"];
+			[alert runModal];
+			return;
+	}
+	NSURL *url = [NSURL URLWithString:storeURL];
 	NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
 	[urlRequest setHTTPMethod:@"POST"];
 	
