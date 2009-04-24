@@ -4,7 +4,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.1.30-log)
 # Database: store
-# Generation Time: 2009-03-11 20:41:37 -0600
+# Generation Time: 2009-04-23 20:52:41 -0600
 # ************************************************************
 
 # Dump of table contacts
@@ -62,19 +62,21 @@ CREATE TABLE `requests` (
 
 CREATE TABLE `transactions` (
   `id` varchar(40) CHARACTER SET utf8 NOT NULL,
+  `paypalTransactionId` varchar(40) COLLATE utf8_bin DEFAULT NULL,
   `contactId` varchar(40) CHARACTER SET utf8 NOT NULL,
   `quantity` int(11) NOT NULL DEFAULT '1',
   `item` varchar(15) CHARACTER SET utf8 NOT NULL,
   `description` varchar(30) CHARACTER SET utf8 NOT NULL,
   `paymentDate` date NOT NULL,
-  `paymentStatus` varchar(15) CHARACTER SET utf8 NOT NULL,
-  `paymentType` varchar(15) CHARACTER SET utf8 NOT NULL,
-  `type` varchar(15) CHARACTER SET utf8 NOT NULL,
+  `paymentStatus` varchar(15) COLLATE utf8_bin DEFAULT NULL,
+  `paymentType` varchar(15) COLLATE utf8_bin DEFAULT NULL,
+  `type` varchar(15) COLLATE utf8_bin DEFAULT NULL,
   `currency` varchar(8) CHARACTER SET utf8 NOT NULL,
-  `gross` decimal(10,2) NOT NULL,
-  `fee` decimal(10,2) NOT NULL,
+  `gross` decimal(10,2) DEFAULT NULL,
+  `fee` decimal(10,2) DEFAULT NULL,
   `receiptId` varchar(40) CHARACTER SET utf8 DEFAULT NULL,
   `parentTransactionId` varchar(40) CHARACTER SET utf8 DEFAULT NULL,
+  `errorCode` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `contactId` (`contactId`),
   KEY `paymentDate` (`paymentDate`),
@@ -97,6 +99,4 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`,`username`,`password`,`active_flag`)
 VALUES
 	(1,'admin',PASSWORD('changeme'),1);
-
-
 
