@@ -27,11 +27,15 @@
 	}
 }
 
-- (NSString *)pathToLicenseFile {
-	NSString *appSupport = [NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-	return [[appSupport stringByAppendingPathComponent:@"BoutiqueDemo"] stringByAppendingPathComponent:@"license.plist"];
-	
+- (NSString *)applicationSupportFolder {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
+    NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : NSTemporaryDirectory();
+    return [basePath stringByAppendingPathComponent:@"BoutiqueDemo"];
 }
+
+- (NSString *)pathToLicenseFile {
+	return [[self applicationSupportFolder] stringByAppendingPathComponent:@"license.plist"];
+}																		
 
 #pragma mark CocoaBoutique delegate methods
 
@@ -87,9 +91,13 @@
 }
 
 - (void)validLicense:(BOOL)valid withLicenseData:(NSData *)licenseData {
+	NSLog(@"%@", licenseData);
 	if (valid) {
-		NSDictionary *dict = [[self licenseValidator] dictionaryForLicenseData:licenseData];
-		[[self licenseValidator] writeLicenseFileForDictionary:dict toPath:[self pathToLicenseFile]];
+		NSString *applicationSupportFolder = [self applicationSupportFolder];
+		if (![[NSFileManager defaultManager] fileExistsAtPath:applicationSupportFolder isDirectory:NULL] ) {
+			[[NSFileManager defaultManager] createDirectoryAtPath:applicationSupportFolder attributes:nil];
+		}
+		[licenseData writeToFile:[self pathToLicenseFile] atomically:YES];
 		NSAlert *alert = [NSAlert alertWithMessageText:@"License Validated" defaultButton:nil alternateButton:nil otherButton:nil informativeTextWithFormat:@"Congrats"];
 		[alert runModal];
 	} else {
