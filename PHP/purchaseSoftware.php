@@ -12,7 +12,6 @@ if (!isset($_POST['firstName']) OR
  	!isset($_POST['state']) OR
  	!isset($_POST['postal']) OR
  	!isset($_POST['product'])) {
- 		print_r($_POST);
 	exit("ERROR: Missing parameter in POST request");
 }
 
