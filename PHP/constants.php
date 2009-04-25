@@ -75,6 +75,6 @@ define('PAYPAL_URL', 'https://www.sandbox.paypal.com/webscr&cmd=_express-checkou
 # The only supported value at this time is 2.3
 */
 
-define('VERSION', '54.0');
+define('VERSION', '57.0');
 
 ?>
