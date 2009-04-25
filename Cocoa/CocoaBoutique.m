@@ -95,6 +95,8 @@
 
 - (void)processServerResponse:(NSData *)urlData {
 	NSString *urlDataString = [[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding];
+	[progressIndicator setHidden:YES];
+	[progressIndicator stopAnimation:self];
 	if ([[urlDataString substringWithRange:NSMakeRange(0, 6)] isEqualToString:@"ERROR:"]) {
 		[_delegate serverError:urlDataString];
 		return;
@@ -102,8 +104,6 @@
 	
 	AquaticPrime *licenseValidator = [_delegate licenseValidator];
 	BOOL validLicense = [licenseValidator verifyLicenseData:urlData];
-	[progressIndicator setHidden:YES];
-	[progressIndicator stopAnimation:self];
 	[_delegate validLicense:validLicense withLicenseData:urlData];
 }
 
