@@ -19,7 +19,7 @@ function newTransaction($paypalTransID,$contactID,$item,$amount) {
 	return $transactionID;
 }
 
-function licenseForTransaction($transactionID) {
+function licenseForTransaction($transactionID,$duringSale) {
 	global $dbconnection;
 	$sql = "select firstname, lastname, email, paymentDate, name, publicKey, privateKey from contacts, transactions, products
 	where contacts.id = transactions.contactid and
@@ -28,6 +28,10 @@ function licenseForTransaction($transactionID) {
 	$query = mysql_query($sql) or exit("ERROR: " . mysql_error($dbconnection));
 	
 	if (mysql_num_rows($query) === 0) return FALSE;
+	
+	if ($duringSale) $b = 1; else; $b = 0;
+	$sql = "insert into requests (transactionID, duringSale) values ('" . mysql_escape_string($transactionID) . "', " . $b . ")";
+	$request_insert = mysql_query($sql) or exit("ERROR: " . mysql_error($dbconnection));
 	
 	$dict = array("Product" => mysql_result($query,0,'name'),
 			  "Name" => mysql_result($query,0,'firstname') . " " . mysql_result($query,0,'lastname'),

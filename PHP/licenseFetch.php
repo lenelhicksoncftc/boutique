@@ -9,7 +9,7 @@ require 'transactionFunctions.php';
 
 $transactionID = $_POST['transactionID'];
 
-$license = licenseForTransaction($transactionID);
+$license = licenseForTransaction($transactionID,FALSE);
 
 if ($license === FALSE) {
 	exit("ERROR: Transaction ID could not be found");

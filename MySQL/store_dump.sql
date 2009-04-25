@@ -4,7 +4,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.1.30-log)
 # Database: store
-# Generation Time: 2009-04-23 20:52:41 -0600
+# Generation Time: 2009-04-25 09:17:12 -0600
 # ************************************************************
 
 # Dump of table contacts
@@ -50,9 +50,11 @@ CREATE TABLE `products` (
 # ------------------------------------------------------------
 
 CREATE TABLE `requests` (
-  `transactionId` varchar(40) CHARACTER SET utf8 NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `transactionId` varchar(40) COLLATE utf8_bin NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`transactionId`)
+  `duringSale` tinyint(11) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 

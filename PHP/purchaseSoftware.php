@@ -87,7 +87,7 @@ if($ack!="SUCCESS")  {
 
 $transactionID = newTransaction($resArray['TRANSACTIONID'],$contact,$productid,$amount);
 
-$license = licenseForTransaction($transactionID);
+$license = licenseForTransaction($transactionID,TRUE);
 
 echo $license;
 
