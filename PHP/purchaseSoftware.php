@@ -54,7 +54,8 @@ $privateKey = mysql_result($query,0,"privateKey");
 /* Construct the request string that will be sent to PayPal.
    The variable $nvpstr contains all the variables and is a
    name value pair string with & as a delimiter */
-$nvpstr="&PAYMENTACTION=$paymentType&AMT=$amount&CREDITCARDTYPE=$creditCardType&ACCT=$creditCardNumber&EXPDATE=".         $padDateMonth.$expDateYear."&CVV2=$cvv2Number&FIRSTNAME=$firstName&LASTNAME=$lastName&STREET=$address1&CITY=$city&STATE=$state".
+$nvpstr="&PAYMENTACTION=$paymentType&AMT=$amount&CREDITCARDTYPE=$creditCardType&ACCT=$creditCardNumber&EXPDATE=".
+$padDateMonth.$expDateYear."&CVV2=$cvv2Number&FIRSTNAME=$firstName&LASTNAME=$lastName&STREET=$address1&CITY=$city&STATE=$state".
 "&ZIP=$postal&COUNTRYCODE=US&CURRENCYCODE=$currencyCode";
 
 /* Make the API call to PayPal, using API signature.
