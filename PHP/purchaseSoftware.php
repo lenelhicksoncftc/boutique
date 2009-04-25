@@ -62,9 +62,8 @@ $padDateMonth.$expDateYear."&CVV2=$cvv2Number&FIRSTNAME=$firstName&LASTNAME=$las
    The API response is stored in an associative array called $resArray */
 $resArray=hash_call("doDirectPayment",$nvpstr);
 
-/* Display the API response back to the browser.
-   If the response from PayPal was a success, display the response parameters'
-   If the response was an error, display the errors received using APIError.php.
+/* If the response from PayPal was a success, issue a license.
+   If the response was an error, return the error.
    */
 
 $ack = strtoupper($resArray["ACK"]);
