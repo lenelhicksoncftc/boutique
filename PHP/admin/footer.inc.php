@@ -1,4 +1,4 @@
-<p class="copyright">store 0.1<br>
+<p class="copyright">Cocoa Boutique 0.1<br>
 &copy; contributors</p>
 </body>
 </html>
