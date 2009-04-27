@@ -101,7 +101,7 @@
 }
 
 - (void)processServerResponse:(NSData *)urlData {
-	NSString *urlDataString = [[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding];
+	NSString *urlDataString = [[[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding] autorelease];
 	[progressIndicator setHidden:YES];
 	[progressIndicator stopAnimation:self];
 	if ([[urlDataString substringWithRange:NSMakeRange(0, 6)] isEqualToString:@"ERROR:"]) {
