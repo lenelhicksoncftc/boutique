@@ -133,6 +133,20 @@
 	[serverResponseData release], serverResponseData = nil;
 }
 
+- (NSArray *)expirationYears {
+	NSMutableArray *years = [NSMutableArray array];
+	NSString *thisYear = [[NSDate date] descriptionWithCalendarFormat:@"%Y" timeZone:nil locale:nil];
+	[years addObject:thisYear];
+	
+	int i,j;
+	for (i = 1; i <= 7; i++) {
+		j = [thisYear intValue] + i;
+		[years addObject:[NSString stringWithFormat:@"%d", j]];
+	}
+	
+	return years;
+}
+
 - (NSArray *)countries {
 	return [NSArray arrayWithObjects:
 			[NSDictionary dictionaryWithObjectsAndKeys:@"Afghanistan", kCountryNameKey, @"AF", kCountryCodeKey, nil],
