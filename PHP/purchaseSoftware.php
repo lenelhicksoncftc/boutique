@@ -11,6 +11,7 @@ if (!isset($_POST['firstName']) OR
  	!isset($_POST['city']) OR
  	!isset($_POST['state']) OR
  	!isset($_POST['postal']) OR
+ 	!isset($_POST['country']) OR
  	!isset($_POST['product'])) {
 	exit("ERROR: Missing parameter in POST request");
 }
@@ -34,6 +35,7 @@ $address1 = urlencode($_POST['address1']);
 $city = urlencode($_POST['city']);
 $state = urlencode($_POST['state']);
 $postal = urlencode($_POST['postal']);
+$country = urlencode($_POST['country']);
 //$currencyCode=urlencode($_POST['currency']);
 $currencyCode="USD";
 
@@ -56,7 +58,7 @@ $privateKey = mysql_result($query,0,"privateKey");
    name value pair string with & as a delimiter */
 $nvpstr="&PAYMENTACTION=$paymentType&AMT=$amount&CREDITCARDTYPE=$creditCardType&ACCT=$creditCardNumber&EXPDATE=".
 $padDateMonth.$expDateYear."&CVV2=$cvv2Number&FIRSTNAME=$firstName&LASTNAME=$lastName&STREET=$address1&CITY=$city&STATE=$state".
-"&ZIP=$postal&COUNTRYCODE=US&CURRENCYCODE=$currencyCode";
+"&ZIP=$postal&COUNTRYCODE=$country&CURRENCYCODE=$currencyCode";
 
 /* Make the API call to PayPal, using API signature.
    The API response is stored in an associative array called $resArray */
@@ -75,7 +77,7 @@ require 'contactFunctions.php';
 $contact = IDforContactEmail($email);
 
 if ($contact === FALSE) {
-	$contact = newContact($firstName,$lastName,"",$address1,"",$city,$state,$postal,"","",$email,"");
+	$contact = newContact($firstName,$lastName,"",$address1,"",$city,$state,$postal,$country,"",$email,"");
 }
 
 require 'transactionFunctions.php';

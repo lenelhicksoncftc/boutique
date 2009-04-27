@@ -111,4 +111,8 @@
 	return NO;
 }
 
+- (NSString *)defaultCountry {
+	return [NSString stringWithString:@"United Kingdom"];
+}
+
 @end

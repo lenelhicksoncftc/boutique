@@ -7,6 +7,9 @@
 #import <Cocoa/Cocoa.h>
 #import "AquaticPrime.h"
 
+#define kCountryNameKey @"country"
+#define kCountryCodeKey @"code"
+
 @interface CocoaBoutique : NSWindowController {
 	id _delegate;
 	
@@ -87,6 +90,13 @@
  */
 
 - (BOOL)overrideSSL;
+
+/*!
+ @method     defaultCountry
+ @abstract   Optional delegate method. Override the default country of United States.
+ */
+
+- (NSString *)defaultCountry;
 
 @end
 
