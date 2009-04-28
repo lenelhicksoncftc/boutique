@@ -30,6 +30,9 @@
 	IBOutlet NSPopUpButton *expirationMonthPopUp;
 	IBOutlet NSPopUpButton *expirationYearPopUp;
 	IBOutlet NSProgressIndicator *progressIndicator;
+	IBOutlet NSTextField *transIDField;
+	IBOutlet NSProgressIndicator *llProgressIndicator;
+	IBOutlet NSTabView *tabview;
 	
 	NSMutableData *serverResponseData;
 	NSURLConnection *serverConnection;
@@ -39,14 +42,16 @@
 - (void)setDelegate:(id)new_delegate;
 
 - (IBAction)processOrder:(id)sender;
-
+- (IBAction)lookupLicense:(id)sender;
+- (IBAction)switchToLicenseLookup:(id)sender;
+- (IBAction)switchToPurchase:(id)sender;
 @end
 
 @interface NSObject (CocoaBoutiqueDelegateMethods)
 
 /*!
     @method     storeURL
-    @abstract   Delegate method. Returns the URL for the purchaseSoftware.php
+    @abstract   Delegate method. Returns the URL path to the folder containing the PHP store files.
 */
 
 - (NSString *)storeURL;

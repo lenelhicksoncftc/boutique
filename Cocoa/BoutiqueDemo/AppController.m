@@ -44,7 +44,7 @@
 }
 
 - (NSString *)storeURL {
-	return [NSString stringWithString:@"http://demo.com/purchaseSoftware.php"];
+	return [NSString stringWithString:@"http://demo.com/store/"];
 }
 
 - (AquaticPrime *)licenseValidator {
