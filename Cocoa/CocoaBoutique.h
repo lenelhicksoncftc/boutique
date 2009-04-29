@@ -32,7 +32,9 @@
 	IBOutlet NSProgressIndicator *progressIndicator;
 	IBOutlet NSTextField *transIDField;
 	IBOutlet NSProgressIndicator *llProgressIndicator;
+	IBOutlet NSTextField *emailLookupField;
 	IBOutlet NSTabView *tabview;
+	
 	
 	NSMutableData *serverResponseData;
 	NSURLConnection *serverConnection;
@@ -45,6 +47,8 @@
 - (IBAction)lookupLicense:(id)sender;
 - (IBAction)switchToLicenseLookup:(id)sender;
 - (IBAction)switchToPurchase:(id)sender;
+- (IBAction)emailTransactionIDs:(id)sender;
+
 @end
 
 @interface NSObject (CocoaBoutiqueDelegateMethods)

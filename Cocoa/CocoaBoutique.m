@@ -121,20 +121,42 @@
 	serverConnection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self];
 }
 
+- (IBAction)emailTransactionIDs:(id)sender {
+	NSString *storeURL = [_delegate storeURL];
+	if (![[storeURL substringWithRange:NSMakeRange(0,8)] isEqualToString:@"https://"]  &&
+		(![_delegate respondsToSelector:@selector(overrideSSL)]  || ![_delegate overrideSSL])) {
+		NSAlert *alert = [NSAlert alertWithMessageText:@"Error" defaultButton:nil alternateButton:nil otherButton:nil informativeTextWithFormat:@"Connection does not use SSL"];
+		[alert runModal];
+		return;
+	}
+	
+	NSURL *url = [NSURL URLWithString:[storeURL stringByAppendingPathComponent:@"emailTransactionIDs.php"]];
+	NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
+	[urlRequest setHTTPMethod:@"POST"];
+	NSString *body = [NSString stringWithFormat:@"email=%@", [[emailLookupField stringValue] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+		[urlRequest setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
+	serverResponseData = [[NSMutableData alloc] init];
+	serverConnection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self];
+}
+
 - (void)processServerResponse:(NSData *)urlData {
 	NSString *urlDataString = [[[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding] autorelease];
 	[progressIndicator setHidden:YES];
 	[progressIndicator stopAnimation:self];
 	[llProgressIndicator setHidden:YES];
 	[llProgressIndicator stopAnimation:self];
-	if ([[urlDataString substringWithRange:NSMakeRange(0, 6)] isEqualToString:@"ERROR:"]) {
-		[_delegate serverError:urlDataString];
-		return;
-	}
 	
-	AquaticPrime *licenseValidator = [_delegate licenseValidator];
-	BOOL validLicense = [licenseValidator verifyLicenseData:urlData];
-	[_delegate validLicense:validLicense withLicenseData:urlData];
+	if ([urlDataString length] > 0) {
+		if ([[urlDataString substringWithRange:NSMakeRange(0, 6)] isEqualToString:@"ERROR:"]) {
+			[_delegate serverError:urlDataString];
+			return;
+		}
+		
+		AquaticPrime *licenseValidator = [_delegate licenseValidator];
+		BOOL validLicense = [licenseValidator verifyLicenseData:urlData];
+		[_delegate validLicense:validLicense withLicenseData:urlData];
+	}
+
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
