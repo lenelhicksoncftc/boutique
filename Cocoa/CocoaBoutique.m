@@ -30,7 +30,9 @@
 	if (me != nil) {
 		[firstNameField setStringValue:[me valueForProperty:@"First"]];
 		[lastNameField setStringValue:[me valueForProperty:@"Last"]];
-		//[companyNameField setStringValue:[me valueForProperty:kABOrganizationProperty]];
+		NSString *org = [me valueForProperty:kABOrganizationProperty];
+		if (org) 
+			[companyNameField setStringValue:org];
 		ABMultiValue *address = [me valueForProperty:@"Address"];
 		if ([address count] > 0) {
 			NSDictionary *address1 = [address valueForIdentifier:[address primaryIdentifier]];
