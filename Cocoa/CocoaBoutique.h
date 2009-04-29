@@ -34,7 +34,7 @@
 	IBOutlet NSProgressIndicator *llProgressIndicator;
 	IBOutlet NSTextField *emailLookupField;
 	IBOutlet NSTabView *tabview;
-	
+	NSProgressIndicator *currentPI;
 	
 	NSMutableData *serverResponseData;
 	NSURLConnection *serverConnection;
@@ -48,7 +48,7 @@
 - (IBAction)switchToLicenseLookup:(id)sender;
 - (IBAction)switchToPurchase:(id)sender;
 - (IBAction)emailTransactionIDs:(id)sender;
-
+- (void)connectionToScript:(NSString *)script withBody:(NSString *)body indicator:(NSProgressIndicator *)pi;
 @end
 
 @interface NSObject (CocoaBoutiqueDelegateMethods)

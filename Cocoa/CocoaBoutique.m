@@ -62,17 +62,7 @@
 }
 
 - (IBAction)processOrder:(id)sender {
-	NSString *storeURL = [_delegate storeURL];
-	if (![[storeURL substringWithRange:NSMakeRange(0,8)] isEqualToString:@"https://"]  &&
-		(![_delegate respondsToSelector:@selector(overrideSSL)]  || ![_delegate overrideSSL])) {
-			NSAlert *alert = [NSAlert alertWithMessageText:@"Error" defaultButton:nil alternateButton:nil otherButton:nil informativeTextWithFormat:@"Connection does not use SSL"];
-			[alert runModal];
-			return;
-	}
-	NSURL *url = [NSURL URLWithString:[storeURL stringByAppendingPathComponent:@"purchaseSoftware.php"]];
-	NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
-	[urlRequest setHTTPMethod:@"POST"];
-	
+
 	NSString *body = [NSString stringWithFormat:@"product=%@&firstName=%@&lastName=%@&creditCardType=%@&creditCardNumber=%@&expDateMonth=%@&expDateYear=%@&cvv2Number=%@&address1=%@&city=%@&state=%@&postal=%@&country=%@&email=%@&company=%@&phone=%@",
 	 [_delegate productName],
 	 [[firstNameField stringValue] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
@@ -92,59 +82,50 @@
 	 [[phoneField stringValue] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
 	];
 
+	[self connectionToScript:@"purchaseSoftware.php" withBody:body indicator:progressIndicator];
+}
+
+- (void)connectionToScript:(NSString *)script withBody:(NSString *)body indicator:(NSProgressIndicator *)pi {
+	NSString *storeURL = [_delegate storeURL];
+	if (![[storeURL substringWithRange:NSMakeRange(0,8)] isEqualToString:@"https://"]  &&
+		(![_delegate respondsToSelector:@selector(overrideSSL)]  || ![_delegate overrideSSL])) {
+		NSAlert *alert = [NSAlert alertWithMessageText:@"Error" defaultButton:nil alternateButton:nil otherButton:nil informativeTextWithFormat:@"Connection does not use SSL"];
+		[alert runModal];
+		return;
+	}
+	NSURL *url = [NSURL URLWithString:script relativeToURL:[NSURL URLWithString:storeURL]];
+	NSLog(@"%@", [url absoluteURL]);
+	NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
+	[urlRequest setHTTPMethod:@"POST"];
+	
 	[urlRequest setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
 	
-	[progressIndicator setHidden:NO];
-	[progressIndicator startAnimation:self];
+	currentPI = pi;
+	[pi setHidden:NO];
+	[pi startAnimation:self];
 	serverResponseData = [[NSMutableData alloc] init];
 	serverConnection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self];
 }
 
 - (IBAction)lookupLicense:(id)sender {
-	NSString *storeURL = [_delegate storeURL];
-	if (![[storeURL substringWithRange:NSMakeRange(0,8)] isEqualToString:@"https://"]  &&
-		(![_delegate respondsToSelector:@selector(overrideSSL)]  || ![_delegate overrideSSL])) {
-		NSAlert *alert = [NSAlert alertWithMessageText:@"Error" defaultButton:nil alternateButton:nil otherButton:nil informativeTextWithFormat:@"Connection does not use SSL"];
-		[alert runModal];
-		return;
-	}
-	
-	NSURL *url = [NSURL URLWithString:[storeURL stringByAppendingPathComponent:@"licenseFetch.php"]];
-	NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
-	[urlRequest setHTTPMethod:@"POST"];
+
 	NSString *body = [NSString stringWithFormat:@"transactionID=%@", [[transIDField stringValue] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 	
-	[urlRequest setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
-	[llProgressIndicator setHidden:NO];
-	[llProgressIndicator startAnimation:self];
-	serverResponseData = [[NSMutableData alloc] init];
-	serverConnection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self];
+	[self connectionToScript:@"licenseFetch.php" withBody:body indicator:llProgressIndicator];
+
 }
 
 - (IBAction)emailTransactionIDs:(id)sender {
-	NSString *storeURL = [_delegate storeURL];
-	if (![[storeURL substringWithRange:NSMakeRange(0,8)] isEqualToString:@"https://"]  &&
-		(![_delegate respondsToSelector:@selector(overrideSSL)]  || ![_delegate overrideSSL])) {
-		NSAlert *alert = [NSAlert alertWithMessageText:@"Error" defaultButton:nil alternateButton:nil otherButton:nil informativeTextWithFormat:@"Connection does not use SSL"];
-		[alert runModal];
-		return;
-	}
-	
-	NSURL *url = [NSURL URLWithString:[storeURL stringByAppendingPathComponent:@"emailTransactionIDs.php"]];
-	NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
-	[urlRequest setHTTPMethod:@"POST"];
+
 	NSString *body = [NSString stringWithFormat:@"email=%@", [[emailLookupField stringValue] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-		[urlRequest setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
-	serverResponseData = [[NSMutableData alloc] init];
-	serverConnection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self];
+	[self connectionToScript:@"emailTransactionIDs.php" withBody:body indicator:nil];
+
 }
 
 - (void)processServerResponse:(NSData *)urlData {
 	NSString *urlDataString = [[[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding] autorelease];
-	[progressIndicator setHidden:YES];
-	[progressIndicator stopAnimation:self];
-	[llProgressIndicator setHidden:YES];
-	[llProgressIndicator stopAnimation:self];
+	[currentPI setHidden:YES];
+	[currentPI stopAnimation:self];
 	
 	if ([urlDataString length] > 0) {
 		if ([[urlDataString substringWithRange:NSMakeRange(0, 6)] isEqualToString:@"ERROR:"]) {
