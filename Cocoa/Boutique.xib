@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="181"/>
+			<integer value="198"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -59,6 +59,7 @@
 				<string key="NSWindowTitle">Cocoa Boutique</string>
 				<string key="NSWindowClass">NSWindow</string>
 				<nil key="NSViewClass"/>
+				<string key="NSWindowContentMaxSize">{3.40282e+38, 3.40282e+38}</string>
 				<object class="NSView" key="NSWindowView" id="67548720">
 					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
@@ -1180,6 +1181,16 @@ IHdpdGggYWxsIHlvdXIgVHJhbnNhY3Rpb24gSURzLg</string>
 																	<int key="NSPeriodicInterval">25</int>
 																</object>
 															</object>
+															<object class="NSProgressIndicator" id="881600023">
+																<reference key="NSNextResponder" ref="577049710"/>
+																<int key="NSvFlags">-2147482356</int>
+																<object class="NSPSMatrix" key="NSDrawMatrix"/>
+																<string key="NSFrame">{{276, 16}, {16, 16}}</string>
+																<reference key="NSSuperview" ref="577049710"/>
+																<int key="NSpiFlags">20746</int>
+																<double key="NSMinValue">1.600000e+01</double>
+																<double key="NSMaxValue">1.000000e+02</double>
+															</object>
 														</object>
 														<string key="NSFrame">{{1, 1}, {402, 137}}</string>
 														<reference key="NSSuperview" ref="964116213"/>
@@ -1535,6 +1546,14 @@ IHdpdGggYWxsIHlvdXIgVHJhbnNhY3Rpb24gSURzLg</string>
 						<reference key="destination" ref="861117346"/>
 					</object>
 					<int key="connectionID">197</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">emProgressIndicator</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="881600023"/>
+					</object>
+					<int key="connectionID">199</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -2395,6 +2414,7 @@ IHdpdGggYWxsIHlvdXIgVHJhbnNhY3Rpb24gSURzLg</string>
 							<reference ref="896553646"/>
 							<reference ref="861117346"/>
 							<reference ref="871218386"/>
+							<reference ref="881600023"/>
 						</object>
 						<reference key="parent" ref="881942246"/>
 					</object>
@@ -2473,6 +2493,11 @@ IHdpdGggYWxsIHlvdXIgVHJhbnNhY3Rpb24gSURzLg</string>
 						<reference key="object" ref="571427941"/>
 						<reference key="parent" ref="264789200"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">198</int>
+						<reference key="object" ref="881600023"/>
+						<reference key="parent" ref="964116213"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -2534,6 +2559,7 @@ IHdpdGggYWxsIHlvdXIgVHJhbnNhY3Rpb24gSURzLg</string>
 					<string>19.IBPluginDependency</string>
 					<string>190.IBPluginDependency</string>
 					<string>193.IBPluginDependency</string>
+					<string>198.IBPluginDependency</string>
 					<string>20.IBPluginDependency</string>
 					<string>21.IBPluginDependency</string>
 					<string>22.IBPluginDependency</string>
@@ -2687,6 +2713,7 @@ IHdpdGggYWxsIHlvdXIgVHJhbnNhY3Rpb24gSURzLg</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{{456, 339}, {147, 63}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -2773,7 +2800,7 @@ IHdpdGggYWxsIHlvdXIgVHJhbnNhY3Rpb24gSURzLg</string>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">197</int>
+			<int key="maxID">199</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -2809,6 +2836,7 @@ IHdpdGggYWxsIHlvdXIgVHJhbnNhY3Rpb24gSURzLg</string>
 							<string>cityField</string>
 							<string>companyNameField</string>
 							<string>countryPopUp</string>
+							<string>emProgressIndicator</string>
 							<string>emailField</string>
 							<string>emailLookupField</string>
 							<string>expirationMonthPopUp</string>
@@ -2833,6 +2861,7 @@ IHdpdGggYWxsIHlvdXIgVHJhbnNhY3Rpb24gSURzLg</string>
 							<string>NSTextField</string>
 							<string>NSTextField</string>
 							<string>NSPopUpButton</string>
+							<string>NSProgressIndicator</string>
 							<string>NSTextField</string>
 							<string>NSTextField</string>
 							<string>NSPopUpButton</string>

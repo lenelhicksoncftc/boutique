@@ -33,6 +33,7 @@
 	IBOutlet NSTextField *transIDField;
 	IBOutlet NSProgressIndicator *llProgressIndicator;
 	IBOutlet NSTextField *emailLookupField;
+	IBOutlet NSProgressIndicator *emProgressIndicator;
 	IBOutlet NSTabView *tabview;
 	NSProgressIndicator *currentPI;
 	

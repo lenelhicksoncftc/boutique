@@ -118,7 +118,7 @@
 - (IBAction)emailTransactionIDs:(id)sender {
 
 	NSString *body = [NSString stringWithFormat:@"email=%@", [[emailLookupField stringValue] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-	[self connectionToScript:@"emailTransactionIDs.php" withBody:body indicator:nil];
+	[self connectionToScript:@"emailTransactionIDs.php" withBody:body indicator:emProgressIndicator];
 
 }
 
