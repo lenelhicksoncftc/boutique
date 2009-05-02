@@ -6,7 +6,9 @@ if (isset($_POST['username'])) {
 	require_once '../dbconnect.php';
 	$sql = "select id from users where username = lower('$posted_username') and password = password ('$posted_password') and active_flag = 1";
 	$result = mysql_query($sql);
-	$id = mysql_result($result, 0, 'id');
+	if (mysql_num_rows($result) > 0)
+		$id = mysql_result($result, 0, 'id'); else
+		$id = FALSE;
 	
 	if ($id !== FALSE and $posted_password != "") {
 		$_SESSION['storeuser'] = $id;
