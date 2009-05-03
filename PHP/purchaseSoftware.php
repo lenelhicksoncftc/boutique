@@ -19,7 +19,7 @@ if (!isset($_POST['firstName']) OR
 require_once 'CallerService.php';
 session_start();
 
-$paymentType = "Authorization";
+$paymentType = "Sale";
 $firstName = urlencode($_POST['firstName']);
 $lastName = urlencode($_POST['lastName']);
 $creditCardType = urlencode($_POST['creditCardType']);
