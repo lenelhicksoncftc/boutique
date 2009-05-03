@@ -36,20 +36,19 @@ $city = urlencode($_POST['city']);
 $state = urlencode($_POST['state']);
 $postal = urlencode($_POST['postal']);
 $country = urlencode($_POST['country']);
-//$currencyCode=urlencode($_POST['currency']);
-$currencyCode="USD";
 
 $product = $_POST['product'];
 
 require 'dbconnect.php';
 require 'transactionFunctions.php';
 
-$sql = "select id, price, publicKey, privateKey from products where name = '" . mysql_escape_string($product) . "'";
+$sql = "select id, price, currency, publicKey, privateKey from products where name = '" . mysql_escape_string($product) . "'";
 $query = mysql_query($sql) or exit("ERROR: " . mysql_error($dbconnection));
 
 if (mysql_num_rows($query) === 0) exit("ERROR: Product not found");
 
 $productid = mysql_result ($query,0,"id");
+$currencyCode = mysql_result($query,0,"currency");
 $key = mysql_result($query,0,"publicKey");
 $privateKey = mysql_result($query,0,"privateKey");
 
