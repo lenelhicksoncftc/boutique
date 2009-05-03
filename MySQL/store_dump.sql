@@ -2,9 +2,9 @@
 # Version 254
 # http://code.google.com/p/sequel-pro
 #
-# Host: 127.0.0.1 (MySQL 5.1.30-log)
+# Host: 127.0.0.1 (MySQL 5.1.34-log)
 # Database: store
-# Generation Time: 2009-04-25 09:17:12 -0600
+# Generation Time: 2009-05-02 21:43:25 -0600
 # ************************************************************
 
 # Dump of table contacts
@@ -28,6 +28,24 @@ CREATE TABLE `contacts` (
   KEY `phone` (`phone`),
   KEY `email` (`email`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+
+
+# Dump of table coupons
+# ------------------------------------------------------------
+
+CREATE TABLE `coupons` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `code` varchar(20) NOT NULL,
+  `productId` int(11) DEFAULT NULL,
+  `startDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `endDate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `value` float NOT NULL,
+  `type` varchar(3) NOT NULL,
+  `quantity` int(11) NOT NULL DEFAULT '0',
+  `used` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 
 
@@ -79,6 +97,7 @@ CREATE TABLE `transactions` (
   `receiptId` varchar(40) CHARACTER SET utf8 DEFAULT NULL,
   `parentTransactionId` varchar(40) CHARACTER SET utf8 DEFAULT NULL,
   `errorCode` int(11) DEFAULT NULL,
+  `couponId` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `contactId` (`contactId`),
   KEY `paymentDate` (`paymentDate`),

@@ -42,16 +42,27 @@ $currencyCode="USD";
 $product = $_POST['product'];
 
 require 'dbconnect.php';
+require 'transactionFunctions.php';
 
 $sql = "select id, price, publicKey, privateKey from products where name = '" . mysql_escape_string($product) . "'";
 $query = mysql_query($sql) or exit("ERROR: " . mysql_error($dbconnection));
 
 if (mysql_num_rows($query) === 0) exit("ERROR: Product not found");
 
-$amount = mysql_result($query,0,"price");
 $productid = mysql_result ($query,0,"id");
 $key = mysql_result($query,0,"publicKey");
 $privateKey = mysql_result($query,0,"privateKey");
+
+if (isset($_POST['coupon']) and $_POST['coupon'] != "") {
+	$couponID = idForCouponCode($_POST['coupon'],$productid);
+	if ($couponID === FALSE) exit("ERROR: Coupon code not found");
+	
+	$amount = couponCalc($couponID);
+	if ($amount === FALSE) exit("ERROR: Coupon code has expired");
+} else {
+	$amount = mysql_result($query,0,"price");
+}
+
 
 /* Construct the request string that will be sent to PayPal.
    The variable $nvpstr contains all the variables and is a
@@ -80,11 +91,14 @@ if ($contact === FALSE) {
 	$contact = newContact($firstName,$lastName,"",$address1,"",$city,$state,$postal,$country,"",$email,"");
 }
 
-require 'transactionFunctions.php';
 
 if($ack!="SUCCESS")  {
 	newFailedTransaction($contact,$resArray['L_ERRORCODE0']);
 	exit("ERROR: " . $resArray['L_LONGMESSAGE0']);
+}
+
+if (isset($_POST['coupon']) and $_POST['coupon'] != "") {
+	incrementCouponUsage($couponID);
 }
 
 $transactionID = newTransaction($resArray['TRANSACTIONID'],$contact,$productid,$amount);
