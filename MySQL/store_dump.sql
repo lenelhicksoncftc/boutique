@@ -87,7 +87,7 @@ CREATE TABLE `transactions` (
   `quantity` int(11) NOT NULL DEFAULT '1',
   `item` varchar(15) CHARACTER SET utf8 NOT NULL,
   `description` varchar(30) CHARACTER SET utf8 NOT NULL,
-  `paymentDate` date NOT NULL,
+  `paymentDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `paymentStatus` varchar(15) COLLATE utf8_bin DEFAULT NULL,
   `paymentType` varchar(15) COLLATE utf8_bin DEFAULT NULL,
   `type` varchar(15) COLLATE utf8_bin DEFAULT NULL,
