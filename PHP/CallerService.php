@@ -2,15 +2,15 @@
 /****************************************************
 CallerService.php
 
-This file uses the constants.php to get parameters needed 
+This file uses the config.php to get parameters needed 
 to make an API call and calls the server.if you want use your
-own credentials, you have to change the constants.php
+own credentials, you have to change the config.php
 
 Called by TransactionDetails.php, ReviewOrder.php, 
 DoDirectPaymentReceipt.php and DoExpressCheckoutPayment.php.
 
 ****************************************************/
-require_once 'constants.php';
+require_once 'config.php';
 
 $API_UserName=API_USERNAME;
 
@@ -53,7 +53,7 @@ function hash_call($methodName,$nvpStr)
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
 	curl_setopt($ch, CURLOPT_POST, 1);
     //if USE_PROXY constant set to TRUE in Constants.php, then only proxy will be enabled.
-   //Set proxy name to PROXY_HOST and port number to PROXY_PORT in constants.php 
+   //Set proxy name to PROXY_HOST and port number to PROXY_PORT in config.php 
 	if(USE_PROXY)
 	curl_setopt ($ch, CURLOPT_PROXY, PROXY_HOST.":".PROXY_PORT); 
 
