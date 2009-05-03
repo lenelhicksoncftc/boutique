@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="198"/>
+			<integer value="173"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -75,7 +75,7 @@
 								<object class="NSTabViewItem" id="577112945">
 									<string key="NSIdentifier">1</string>
 									<object class="NSView" key="NSView" id="558053426">
-										<nil key="NSNextResponder"/>
+										<reference key="NSNextResponder" ref="236204187"/>
 										<int key="NSvFlags">256</int>
 										<object class="NSMutableArray" key="NSSubviews">
 											<bool key="EncodedWithXMLCoder">YES</bool>
@@ -326,7 +326,7 @@
 											<object class="NSTextField" id="550100410">
 												<reference key="NSNextResponder" ref="558053426"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{124, 150}, {291, 22}}</string>
+												<string key="NSFrame">{{124, 150}, {143, 22}}</string>
 												<reference key="NSSuperview" ref="558053426"/>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSTextFieldCell" key="NSCell" id="799427859">
@@ -863,7 +863,7 @@
 												<object class="NSTextFieldCell" key="NSCell" id="803345638">
 													<int key="NSCellFlags">68288064</int>
 													<int key="NSCellFlags2">272630784</int>
-													<string key="NSContents">Name on Card:</string>
+													<string key="NSContents">Coupon Code:</string>
 													<reference key="NSSupport" ref="387455690"/>
 													<reference key="NSControlView" ref="624261668"/>
 													<reference key="NSBackgroundColor" ref="976884408"/>
@@ -966,6 +966,7 @@
 											</object>
 										</object>
 										<string key="NSFrameSize">{438, 445}</string>
+										<reference key="NSSuperview" ref="236204187"/>
 									</object>
 									<string key="NSLabel">Puchase</string>
 									<reference key="NSColor" ref="976884408"/>
@@ -974,7 +975,7 @@
 								<object class="NSTabViewItem" id="610738164">
 									<string key="NSIdentifier">2</string>
 									<object class="NSView" key="NSView" id="881942246">
-										<reference key="NSNextResponder" ref="236204187"/>
+										<nil key="NSNextResponder"/>
 										<int key="NSvFlags">256</int>
 										<object class="NSMutableArray" key="NSSubviews">
 											<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1238,21 +1239,20 @@ IHdpdGggYWxsIHlvdXIgVHJhbnNhY3Rpb24gSURzLg</string>
 											</object>
 										</object>
 										<string key="NSFrameSize">{438, 445}</string>
-										<reference key="NSSuperview" ref="236204187"/>
 									</object>
 									<string key="NSLabel">Lookup</string>
 									<reference key="NSColor" ref="976884408"/>
 									<reference key="NSTabView" ref="236204187"/>
 								</object>
 							</object>
-							<reference key="NSSelectedTabViewItem" ref="610738164"/>
+							<reference key="NSSelectedTabViewItem" ref="577112945"/>
 							<reference key="NSFont" ref="387455690"/>
 							<int key="NSTvFlags">6</int>
 							<bool key="NSAllowTruncatedLabels">YES</bool>
 							<bool key="NSDrawsBackground">YES</bool>
 							<object class="NSMutableArray" key="NSSubviews">
 								<bool key="EncodedWithXMLCoder">YES</bool>
-								<reference ref="881942246"/>
+								<reference ref="558053426"/>
 							</object>
 						</object>
 					</object>
@@ -1305,14 +1305,6 @@ IHdpdGggYWxsIHlvdXIgVHJhbnNhY3Rpb24gSURzLg</string>
 						<reference key="destination" ref="871717739"/>
 					</object>
 					<int key="connectionID">84</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">nameOnCardField</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="550100410"/>
-					</object>
-					<int key="connectionID">85</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -1554,6 +1546,14 @@ IHdpdGggYWxsIHlvdXIgVHJhbnNhY3Rpb24gSURzLg</string>
 						<reference key="destination" ref="881600023"/>
 					</object>
 					<int key="connectionID">199</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">couponCodeField</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="550100410"/>
+					</object>
+					<int key="connectionID">200</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -2800,7 +2800,7 @@ IHdpdGggYWxsIHlvdXIgVHJhbnNhY3Rpb24gSURzLg</string>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">199</int>
+			<int key="maxID">200</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -2836,6 +2836,7 @@ IHdpdGggYWxsIHlvdXIgVHJhbnNhY3Rpb24gSURzLg</string>
 							<string>cityField</string>
 							<string>companyNameField</string>
 							<string>countryPopUp</string>
+							<string>couponCodeField</string>
 							<string>emProgressIndicator</string>
 							<string>emailField</string>
 							<string>emailLookupField</string>
@@ -2861,6 +2862,7 @@ IHdpdGggYWxsIHlvdXIgVHJhbnNhY3Rpb24gSURzLg</string>
 							<string>NSTextField</string>
 							<string>NSTextField</string>
 							<string>NSPopUpButton</string>
+							<string>NSTextField</string>
 							<string>NSProgressIndicator</string>
 							<string>NSTextField</string>
 							<string>NSTextField</string>

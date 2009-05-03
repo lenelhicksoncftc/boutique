@@ -63,7 +63,7 @@
 
 - (IBAction)processOrder:(id)sender {
 
-	NSString *body = [NSString stringWithFormat:@"product=%@&firstName=%@&lastName=%@&creditCardType=%@&creditCardNumber=%@&expDateMonth=%@&expDateYear=%@&cvv2Number=%@&address1=%@&city=%@&state=%@&postal=%@&country=%@&email=%@&company=%@&phone=%@",
+	NSString *body = [NSString stringWithFormat:@"product=%@&firstName=%@&lastName=%@&creditCardType=%@&creditCardNumber=%@&expDateMonth=%@&expDateYear=%@&cvv2Number=%@&address1=%@&city=%@&state=%@&postal=%@&country=%@&email=%@&company=%@&phone=%@&coupon=%@",
 	 [_delegate productName],
 	 [[firstNameField stringValue] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
 	 [[lastNameField stringValue] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
@@ -79,7 +79,8 @@
 	 [[[[countryPopUp selectedItem] representedObject] valueForKey:kCountryCodeKey] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
 	 [[emailField stringValue] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
 	 [[companyNameField stringValue] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-	 [[phoneField stringValue] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
+	 [[phoneField stringValue] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+	 [[couponCodeField stringValue] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
 	];
 
 	[self connectionToScript:@"purchaseSoftware.php" withBody:body indicator:progressIndicator];

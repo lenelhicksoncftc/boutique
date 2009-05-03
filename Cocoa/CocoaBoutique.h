@@ -23,12 +23,12 @@
 	IBOutlet NSPopUpButton *countryPopUp;
 	IBOutlet NSTextField *emailField;
 	IBOutlet NSTextField *phoneField;
-	IBOutlet NSTextField *nameOnCardField;
 	IBOutlet NSPopUpButton *cardTypePopUp;
 	IBOutlet NSTextField *cardNumberField;
 	IBOutlet NSTextField *securityNumberField;
 	IBOutlet NSPopUpButton *expirationMonthPopUp;
 	IBOutlet NSPopUpButton *expirationYearPopUp;
+	IBOutlet NSTextField *couponCodeField;
 	IBOutlet NSProgressIndicator *progressIndicator;
 	IBOutlet NSTextField *transIDField;
 	IBOutlet NSProgressIndicator *llProgressIndicator;
