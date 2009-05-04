@@ -8,13 +8,13 @@ function boutique_mail ($to, $subject, $plain_body, $html_body="") {
 	$message = new Mail_mime($crlf);
 	
 	if ($html_body != "") {
-		$header = "<p><img src=\"logo.png\"></p>";
+		$header = "<p><img src=\"". MAIL_LOGO . "\"></p>";
 		$html_message = "<html><head>";
 		$html_message .= "<style text=\"text/css\"><!-- ";
 		$html_message .= file_get_contents("boutique-mail.css");
-		$html_message .= " --></style></head><body>" . $header . $html_body . "</body></html>";
+		$html_message .= " --></style></head><body>" . $header . "<p>" . $html_body . "</p>" . "</body></html>";
 		$message->setHTMLBody($html_message);
-		$message->addHTMLImage("logo.png", "image/png");
+		$message->addHTMLImage(MAIL_LOGO, "image/png");
 	}
 
 	$message->setTXTBody($plain_body);

@@ -102,6 +102,20 @@ if (isset($_POST['coupon']) and $_POST['coupon'] != "") {
 
 $transactionID = newTransaction($resArray['TRANSACTIONID'],$contact,$productid,$amount);
 
+require_once 'mailFunctions.php';
+
+$subject = "Receipt from " . COMPANY_NAME;
+
+$plainReceipt = RECEIPT_MESSAGE;
+$plainReceipt = str_replace(array("##NAME##", "##PRODUCT##", "##CODE##", "##PRICE##"), array($firstName . " " . $lastName, $product, $transactionID, $amount), $plainReceipt);
+
+$htmlReceipt = nl2br($plainReceipt);
+
+$htmlReceipt = ereg_replace("[[:alpha:]]+://[^<>[:space:]]+[[:alnum:]/]",
+                     "<a href=\"\\0\">\\0</a>", $htmlReceipt);
+
+boutique_mail($email,$subject,$plainReceipt,$htmlReceipt);
+
 $license = licenseForTransaction($transactionID,TRUE);
 
 echo $license;
