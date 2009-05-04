@@ -17,13 +17,15 @@ if (mysql_num_rows($query) === 0) exit("ERROR: No Transaction IDs found");
 
 require 'mailFunctions.php';
 
-$plain = "Thanks for requests your Transaction IDs.  We hope your enjoy our software.\n\n";
+$plain = "Thanks for requesting your Transaction IDs.  We hope your enjoy our software.\n\n";
 
 while ($row = mysql_fetch_row($query)) {
-	$plain .= $row[0] . "   " . $row[1];
+	$plain .= $row[0] . "   " . $row[1] . "\n";
 }
 
-boutique_mail($email,"Your Transaction IDs", $plain);
+$html = nl2br($plain);
+
+boutique_mail($email, "Your Transaction IDs from " . COMPANY_NAME, $plain, $html);
 
 
 ?>
