@@ -5,12 +5,12 @@ require_once 'auth.php';
 require 'header.inc.php';
 
 $timeStamp = date('r'); //'M j, Y H:i:s');
-echo('<p align="center">Updated ' . $timeStamp . '</p>');
+echo("<p align=\"center\">Updated " . $timeStamp . "</p>\n");
 
 require_once '../dbconnect.php';
 
-echo "<div id=\"content\">";
-echo "<div class=\"column\">";
+echo "<div id=\"content\">\n";
+echo "<div class=\"column\">\n";
 
 $today = date('Y-m-d');
 $days = 14;
@@ -79,7 +79,7 @@ while ($dateIndex < $days) {
 		echo("<br>&nbsp;&nbsp;-&nbsp;$sales&nbsp;&nbsp;refunds; \$$gross");
 	}
 	$dateIndex++;
-	echo("</p>");
+	echo("</p>\n");
 }
 
 $query = "SELECT  SUM(quantity), item, SUM(gross) FROM  `transactions` WHERE paymentStatus = 'Pending' GROUP BY item ORDER BY item DESC";
@@ -99,7 +99,7 @@ if ($num > 0) {
 		$item = mysql_result($result, $detailIndex, 1);
 		$total = mysql_result($result, $detailIndex, 2);
 		
-		echo("<br>&nbsp;&nbsp;-&nbsp;$count&nbsp;&nbsp;$item&nbsp;&nbsp;\$$total</p>");
+		echo("<br>&nbsp;&nbsp;-&nbsp;$count&nbsp;&nbsp;$item&nbsp;&nbsp;\$$total</p>\n");
 		
 		$detailIndex++;
 	}
@@ -109,7 +109,7 @@ if ($num > 0) {
 $query = "SELECT COUNT(*) FROM contacts WHERE id LIKE 'APL%'";
 $appleResult = mysql_query($query);
 $appleCount = mysql_result($appleResult, 0, 0);
-echo("<p>Over $appleCount Apple employees served</p>");
+echo("<p>Over $appleCount Apple employees served</p>\n");
 
 ?>
 </div> <!-- column -->
@@ -160,11 +160,14 @@ while ($dateIndex < $months) {
 	}
 	
 	$todayDisplay = date('M j, Y');
-	echo("<br>&nbsp;&nbsp;-&nbsp;TX: $sales sales; \$$net net; \$$gross gross</p>");
+	echo("<br>&nbsp;&nbsp;-&nbsp;TX: $sales sales; \$$net net; \$$gross gross</p>\n");
 	
 	$dateIndex++;
 /* 	echo("<br>"); */
 }
+
+echo "</div>\n";
+echo "</div>\n";
 
 require 'footer.inc.php';
 
