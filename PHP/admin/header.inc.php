@@ -28,3 +28,5 @@ if (isset($_SESSION['info'])) {
 }
 
 ?>
+
+<p align="center"><a href="index.php">Home</a> &nbsp;<a href="issueFree.php">Issue Free License</a></p>

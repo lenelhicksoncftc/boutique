@@ -45,6 +45,15 @@ td {
 	font-size: 12pt;
 }
 
+td.formlabel {
+	vertical-align: bottom;
+	font-family: "Lucida Grande",Verdana,sans-serif;
+	text-align: right;
+	color: rgb(105,46,46);
+	font-weight: bold;
+	height: 12pt;
+}
+
 fieldset {
 	border: 2px solid rgb(0,72,144);
 	width: 320px;

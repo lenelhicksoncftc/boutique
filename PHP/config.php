@@ -15,7 +15,7 @@ define(MAIL_FROM, "me@mycompany.com");
 
 // E-mail Templates
 
-define(MAIL_LOGO, "admin/images/logo.png");
+define(MAIL_LOGO, "/usr/local/apache2/htdocs/store/admin/images/logo.png");
 
 $receiptMessage =
 "Hello ##NAME##,
@@ -39,6 +39,27 @@ My Company
 http://mycompany.com";
 
 define(RECEIPT_MESSAGE,$receiptMessage);
+
+$freeMessage =
+"Hello ##NAME##,
+
+This is your  confirmation email for a free license of ##PRODUCT##. If you have not already downloaded ##PRODUCT## please do so now: http://mycompany.com/download
+
+To retrieve your license, simple enter the transaction ID below when prompted to do so after running ##PRODUCT##.
+
+
+  Transaction ID: ##CODE##
+
+
+Thank you for supporting My Company!
+
+Best regards,
+
+Big Wigg
+My Company
+http://mycompany.com";
+
+define(FREE_MESSAGE,$freeMessage);
 
 /**
 # API user: The user that is identified as making the call. you can
