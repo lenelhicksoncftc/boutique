@@ -114,7 +114,7 @@ $htmlReceipt = nl2br($plainReceipt);
 $htmlReceipt = ereg_replace("[[:alpha:]]+://[^<>[:space:]]+[[:alnum:]/]",
                      "<a href=\"\\0\">\\0</a>", $htmlReceipt);
 
-boutique_mail($email,$subject,$plainReceipt,$htmlReceipt);
+boutique_mail($email,$subject,$plainReceipt,$htmlReceipt,TRUE);
 
 $license = licenseForTransaction($transactionID,TRUE);
 

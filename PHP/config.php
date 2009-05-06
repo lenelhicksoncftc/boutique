@@ -17,6 +17,9 @@ define(MAIL_FROM, "me@mycompany.com");
 
 define(MAIL_LOGO, "/usr/local/apache2/htdocs/store/admin/images/logo.png");
 
+// Address for BCC of receipts.  Leave empty for no BCC
+define(MAIL_BCC, "me@mycompany.com");
+
 $receiptMessage =
 "Hello ##NAME##,
 
