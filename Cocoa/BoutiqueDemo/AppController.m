@@ -106,13 +106,9 @@
 	}
 }
 
+// Optional delegate method to override SSL requirement
 - (BOOL)overrideSSL {
-	// Optional delegate method to override SSL requirement
 	return NO;
-}
-
-- (NSString *)defaultCountry {
-	return [NSString stringWithString:@"United Kingdom"];
 }
 
 @end

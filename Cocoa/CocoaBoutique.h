@@ -12,6 +12,7 @@
 
 @interface CocoaBoutique : NSWindowController {
 	id _delegate;
+	NSArray *_countries;
 	
 	IBOutlet NSTextField *firstNameField;
 	IBOutlet NSTextField *lastNameField;
@@ -42,7 +43,9 @@
 }
 
 - (id)delegate;
-- (void)setDelegate:(id)new_delegate;
+- (void)setDelegate:(id)newDelegate;
+- (NSArray *)countries;
+- (void)setCountries:(NSArray *)newArray;
 
 - (IBAction)processOrder:(id)sender;
 - (IBAction)lookupLicense:(id)sender;

@@ -3,6 +3,12 @@
 //
 //  Created by Fraser Hess on 2/23/09.
 //
+//  26-MAY-2009 Kevin Hoctor
+//    - Revised UI in Interface Builder
+//	  - Replaced _delegate with [self delegate] where appropriate
+//    - Replaced hard coded defaultCountry with NSLocale lookup
+//    - Minor code refactoring
+//
 
 #import "CocoaBoutique.h"
 #import <AddressBook/AddressBook.h>
@@ -42,21 +48,18 @@
 			[postalField setStringValue:[address1 objectForKey:@"ZIP"]];
 		}
 		ABMultiValue *emails = [me valueForProperty:@"Email"];
-		if ([emails count] > 0) {
+		if ([emails count] > 0)
 			[emailField setStringValue:[emails valueForIdentifier:[emails primaryIdentifier]]];
-		}
 		ABMultiValue *phones = [me valueForProperty:@"Phone"];
-		if ([phones count] > 0) {
+		if ([phones count] > 0)
 			[phoneField setStringValue:[phones valueForIdentifier:[phones primaryIdentifier]]];
-		}
 	}
 	
-	NSString *defaultCountry;
-	if ([_delegate respondsToSelector:@selector(defaultCountry)]) {
-		defaultCountry = [_delegate defaultCountry];
-	} else {
-		defaultCountry = [NSString stringWithString:@"United States"];
-	}
+	NSString *defaultCountry;	
+	if ([[self delegate] respondsToSelector:@selector(defaultCountry)])
+		defaultCountry = [[self delegate] defaultCountry];
+	else
+		defaultCountry = [[NSLocale currentLocale] displayNameForKey:NSLocaleCountryCode value:[[NSLocale currentLocale] objectForKey:NSLocaleCountryCode]];
 	[countryPopUp selectItemWithTitle:defaultCountry];
 	[countryPopUp synchronizeTitleAndSelectedItem];
 }
@@ -64,7 +67,7 @@
 - (IBAction)processOrder:(id)sender {
 
 	NSString *body = [NSString stringWithFormat:@"product=%@&firstName=%@&lastName=%@&creditCardType=%@&creditCardNumber=%@&expDateMonth=%@&expDateYear=%@&cvv2Number=%@&address1=%@&city=%@&state=%@&postal=%@&country=%@&email=%@&company=%@&phone=%@&coupon=%@",
-	 [_delegate productName],
+	 [[self delegate] productName],
 	 [[firstNameField stringValue] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
 	 [[lastNameField stringValue] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
 	 [[[cardTypePopUp selectedItem] title] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
@@ -87,9 +90,9 @@
 }
 
 - (void)connectionToScript:(NSString *)script withBody:(NSString *)body indicator:(NSProgressIndicator *)pi {
-	NSString *storeURL = [_delegate storeURL];
+	NSString *storeURL = [[self delegate] storeURL];
 	if (![[storeURL substringWithRange:NSMakeRange(0,8)] isEqualToString:@"https://"]  &&
-		(![_delegate respondsToSelector:@selector(overrideSSL)]  || ![_delegate overrideSSL])) {
+		(![[self delegate] respondsToSelector:@selector(overrideSSL)]  || ![[self delegate] overrideSSL])) {
 		NSAlert *alert = [NSAlert alertWithMessageText:@"Error" defaultButton:nil alternateButton:nil otherButton:nil informativeTextWithFormat:@"Connection does not use SSL"];
 		[alert runModal];
 		return;
@@ -130,13 +133,13 @@
 	
 	if ([urlDataString length] > 0) {
 		if ([[urlDataString substringWithRange:NSMakeRange(0, 6)] isEqualToString:@"ERROR:"]) {
-			[_delegate serverError:urlDataString];
+			[[self delegate] serverError:urlDataString];
 			return;
 		}
 		
-		AquaticPrime *licenseValidator = [_delegate licenseValidator];
+		AquaticPrime *licenseValidator = [[self delegate] licenseValidator];
 		BOOL validLicense = [licenseValidator verifyLicenseData:urlData];
-		[_delegate validLicense:validLicense withLicenseData:urlData];
+		[[self delegate] validLicense:validLicense withLicenseData:urlData];
 	}
 
 }
@@ -173,11 +176,9 @@
 	NSString *thisYear = [[NSDate date] descriptionWithCalendarFormat:@"%Y" timeZone:nil locale:nil];
 	[years addObject:thisYear];
 	
-	int i,j;
-	for (i = 1; i <= 7; i++) {
-		j = [thisYear intValue] + i;
-		[years addObject:[NSString stringWithFormat:@"%d", j]];
-	}
+	int yearIndex;
+	for (yearIndex = 1; yearIndex <= 7; yearIndex++)
+		[years addObject:[NSString stringWithFormat:@"%d", [thisYear intValue] + yearIndex]];
 	
 	return years;
 }
