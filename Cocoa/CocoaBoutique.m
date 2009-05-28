@@ -115,6 +115,7 @@
 	currentPI = pi;
 	[pi setHidden:NO];
 	[pi startAnimation:self];
+	[purchaseButton setEnabled:NO];
 	serverResponseData = [[NSMutableData alloc] init];
 	serverConnection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self];
 }
@@ -138,7 +139,7 @@
 	NSString *urlDataString = [[[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding] autorelease];
 	[currentPI setHidden:YES];
 	[currentPI stopAnimation:self];
-	
+	[purchaseButton setEnabled:YES];
 	if ([urlDataString length] > 0) {
 		if ([[urlDataString substringWithRange:NSMakeRange(0, 6)] isEqualToString:@"ERROR:"]) {
 			[[self delegate] serverError:urlDataString];

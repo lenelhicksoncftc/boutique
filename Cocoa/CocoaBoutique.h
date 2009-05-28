@@ -36,6 +36,7 @@
 	IBOutlet NSTextField *emailLookupField;
 	IBOutlet NSProgressIndicator *emProgressIndicator;
 	IBOutlet NSTabView *tabview;
+	IBOutlet NSButton *purchaseButton;
 	NSProgressIndicator *currentPI;
 	
 	NSMutableData *serverResponseData;
