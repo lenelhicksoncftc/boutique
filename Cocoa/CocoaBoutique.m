@@ -25,10 +25,18 @@
 }
 
 - (id)init {
-	if (![super initWithWindowNibName:@"Boutique"]) {
-		return nil;
+	self = [super initWithWindowNibName:@"Boutique"];
+	if (self != nil) {
+		_countries = nil;
+		_delegate = nil;
 	}
 	return self;
+}
+
+- (void) dealloc {
+	[self setCountries:nil];
+	[self setDelegate:nil];
+	[super dealloc];
 }
 
 - (void)windowDidLoad {
@@ -41,7 +49,7 @@
 			[companyNameField setStringValue:org];
 		ABMultiValue *address = [me valueForProperty:@"Address"];
 		if ([address count] > 0) {
-			NSDictionary *address1 = [address valueForIdentifier:[address primaryIdentifier]];
+			NSDictionary *address1 = [address valueAtIndex:[address indexForIdentifier:[address primaryIdentifier]]];
 			[streetAddressField setStringValue:[address1 objectForKey:@"Street"]];
 			[cityField setStringValue:[address1 objectForKey:@"City"]];
 			[stateField setStringValue:[address1 objectForKey:@"State"]];
@@ -49,10 +57,10 @@
 		}
 		ABMultiValue *emails = [me valueForProperty:@"Email"];
 		if ([emails count] > 0)
-			[emailField setStringValue:[emails valueForIdentifier:[emails primaryIdentifier]]];
+			[emailField setStringValue:[emails valueAtIndex:[emails indexForIdentifier:[emails primaryIdentifier]]]];
 		ABMultiValue *phones = [me valueForProperty:@"Phone"];
 		if ([phones count] > 0)
-			[phoneField setStringValue:[phones valueForIdentifier:[phones primaryIdentifier]]];
+			[phoneField setStringValue:[phones valueAtIndex:[phones indexForIdentifier:[phones primaryIdentifier]]]];
 	}
 	
 	NSString *defaultCountry;	
@@ -67,7 +75,7 @@
 - (IBAction)processOrder:(id)sender {
 
 	NSString *body = [NSString stringWithFormat:@"product=%@&firstName=%@&lastName=%@&creditCardType=%@&creditCardNumber=%@&expDateMonth=%@&expDateYear=%@&cvv2Number=%@&address1=%@&city=%@&state=%@&postal=%@&country=%@&email=%@&company=%@&phone=%@&coupon=%@",
-	 [[self delegate] productName],
+	 [[[self delegate] productName] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
 	 [[firstNameField stringValue] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
 	 [[lastNameField stringValue] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
 	 [[[cardTypePopUp selectedItem] title] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
@@ -184,7 +192,8 @@
 }
 
 - (NSArray *)countries {
-	return [NSArray arrayWithObjects:
+	if (_countries == nil)
+		[self setCountries:[NSArray arrayWithObjects:
 			[NSDictionary dictionaryWithObjectsAndKeys:@"Afghanistan", kCountryNameKey, @"AF", kCountryCodeKey, nil],
 			[NSDictionary dictionaryWithObjectsAndKeys:@"Åland Islands", kCountryNameKey, @"AX", kCountryCodeKey, nil],
 			[NSDictionary dictionaryWithObjectsAndKeys:@"Albania", kCountryNameKey, @"AL", kCountryCodeKey, nil],
@@ -428,7 +437,14 @@
 			[NSDictionary dictionaryWithObjectsAndKeys:@"Yemen", kCountryNameKey, @"YE", kCountryCodeKey, nil],
 			[NSDictionary dictionaryWithObjectsAndKeys:@"Zambia", kCountryNameKey, @"ZM", kCountryCodeKey, nil],
 			[NSDictionary dictionaryWithObjectsAndKeys:@"Zimbabwe", kCountryNameKey, @"ZW", kCountryCodeKey, nil],
-			nil];
+			nil]];
+	return _countries;
+}
+
+- (void)setCountries:(NSArray *)newArray {
+	if (_countries == newArray) return;
+	[_countries release];
+	_countries = [newArray retain];
 }
 
 @end
