@@ -27,7 +27,7 @@ This is your purchase confirmation email for ##PRODUCT##. If you have not alread
 
 Your total cost after any coupons: \$##PRICE##
 
-To retrieve your license, simple enter the transaction ID below when prompted to do so after running ##PRODUCT##.
+In the future, if you have to reinstall ##PRODUCT##, you do not need to purchase again.  Register by clicking the \"License Lookup\" button in the Purchase window and enter the transaction ID found below.
 
 
   Transaction ID: ##CODE##
@@ -46,9 +46,9 @@ define(RECEIPT_MESSAGE,$receiptMessage);
 $freeMessage =
 "Hello ##NAME##,
 
-This is your  confirmation email for a free license of ##PRODUCT##. If you have not already downloaded ##PRODUCT## please do so now: http://mycompany.com/download
+This is your confirmation email for a free license of ##PRODUCT##. If you have not already downloaded ##PRODUCT## please do so now: http://mycompany.com/download
 
-To retrieve your license, simple enter the transaction ID below when prompted to do so after running ##PRODUCT##.
+Register by clicking the \"License Lookup\" button in the Purchase window and enter the transaction ID found below.
 
 
   Transaction ID: ##CODE##
