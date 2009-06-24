@@ -19,7 +19,6 @@ if (!isset($_POST['firstName']) OR
 require_once 'CallerService.php';
 session_start();
 
-$paymentType = "Sale";
 $firstName = urlencode($_POST['firstName']);
 $lastName = urlencode($_POST['lastName']);
 $creditCardType = urlencode($_POST['creditCardType']);
@@ -36,6 +35,7 @@ $city = urlencode($_POST['city']);
 $state = urlencode($_POST['state']);
 $postal = urlencode($_POST['postal']);
 $country = urlencode($_POST['country']);
+$email = $_POST['email'];
 
 $product = $_POST['product'];
 
@@ -66,9 +66,9 @@ if (isset($_POST['coupon']) and $_POST['coupon'] != "") {
 /* Construct the request string that will be sent to PayPal.
    The variable $nvpstr contains all the variables and is a
    name value pair string with & as a delimiter */
-$nvpstr="&PAYMENTACTION=$paymentType&AMT=$amount&CREDITCARDTYPE=$creditCardType&ACCT=$creditCardNumber&EXPDATE=".
+$nvpstr="&PAYMENTACTION=Authorization&AMT=$amount&CREDITCARDTYPE=$creditCardType&ACCT=$creditCardNumber&EXPDATE=".
 $padDateMonth.$expDateYear."&CVV2=$cvv2Number&FIRSTNAME=$firstName&LASTNAME=$lastName&STREET=$address1&CITY=$city&STATE=$state".
-"&ZIP=$postal&COUNTRYCODE=$country&CURRENCYCODE=$currencyCode";
+"&ZIP=$postal&COUNTRYCODE=$country&EMAIL=$email&CURRENCYCODE=$currencyCode";
 
 /* Make the API call to PayPal, using API signature.
    The API response is stored in an associative array called $resArray */
@@ -80,8 +80,6 @@ $resArray=hash_call("doDirectPayment",$nvpstr);
 
 $ack = strtoupper($resArray["ACK"]);
 
-$email = $_POST['email'];
-
 require 'contactFunctions.php';
 
 $contact = IDforContactEmail($email);
@@ -90,11 +88,26 @@ if ($contact === FALSE) {
 	$contact = newContact($firstName,$lastName,"",$address1,"",$city,$state,$postal,$country,"",$email,"");
 }
 
-
 if($ack!="SUCCESS")  {
 	newFailedTransaction($contact,$resArray['L_ERRORCODE0']);
 	exit("ERROR: " . $resArray['L_LONGMESSAGE0']);
 }
+
+if ($resArray['AVSCODE'] == "C" OR $resArray['AVSCODE'] == "E" OR $resArray['AVSCODE'] == "N") {
+	newFailedTransaction($contact,"50000");
+	exit("ERROR: Address did not verify");
+}
+
+if ($resArray['CVV2MATCH'] != "M") {
+	newFailedTransaction($contact,"50001");
+	exit("ERROR: CVV code does not match");
+}
+
+// Run sale for real
+$authorizationID = $resArray['TRANSACTIONID'];
+
+$nvpStr="&AUTHORIZATIONID=$authorizationID&AMT=$amount&COMPLETETYPE=Complete&CURRENCYCODE=$currencyCode";
+$resArray=hash_call("DOCapture",$nvpStr);
 
 if (isset($_POST['coupon']) and $_POST['coupon'] != "") {
 	incrementCouponUsage($couponID);
@@ -111,8 +124,7 @@ $plainReceipt = str_replace(array("##NAME##", "##PRODUCT##", "##CODE##", "##PRIC
 
 $htmlReceipt = nl2br($plainReceipt);
 
-$htmlReceipt = ereg_replace("[[:alpha:]]+://[^<>[:space:]]+[[:alnum:]/]",
-                     "<a href=\"\\0\">\\0</a>", $htmlReceipt);
+$htmlReceipt = ereg_replace("[[:alpha:]]+://[^<>[:space:]]+[[:alnum:]/]", "<a href=\"\\0\">\\0</a>", $htmlReceipt);
 
 boutique_mail($email,$subject,$plainReceipt,$htmlReceipt,TRUE);
 
