@@ -25,7 +25,6 @@ CREATE TABLE `contacts` (
   `email` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
   `website` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `phone` (`phone`),
   KEY `email` (`email`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -44,7 +43,8 @@ CREATE TABLE `coupons` (
   `type` varchar(3) NOT NULL,
   `quantity` int(11) NOT NULL DEFAULT '0',
   `used` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `code` (`code`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 
@@ -60,7 +60,8 @@ CREATE TABLE `products` (
   `publicKey` varchar(512) COLLATE utf8_bin NOT NULL,
   `privateKey` varchar(512) COLLATE utf8_bin NOT NULL,
   `currency` varchar(5) COLLATE utf8_bin NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `name` (`name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 INSERT INTO `products` (`id`,`name`,`description`,`price`,`publicKey`,`privateKey`,`currency`)
@@ -106,7 +107,7 @@ CREATE TABLE `transactions` (
   PRIMARY KEY (`id`),
   KEY `contactId` (`contactId`),
   KEY `paymentDate` (`paymentDate`),
-  KEY `receiptId` (`receiptId`)
+  KEY `item` (`item`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 
