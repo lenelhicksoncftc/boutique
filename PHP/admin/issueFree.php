@@ -13,7 +13,7 @@ if (isset($_POST['firstname'])) {
 	
 	$contactID = IDforContactEmail($_POST['email']);
 	if ($contactID === FALSE) {
-		$contactID = newContact($_POST['firstname'],$_POST['firstname'],"","","","","","","","",$_POST['email'],"");
+		$contactID = newContact($_POST['firstname'],$_POST['lastname'],"","","","","","","","",$_POST['email'],"");
 	}
 	$transactionID = newTransaction("",$contactID,$_POST['product'],0);
 	
