@@ -1,4 +1,6 @@
 <?php
+$path = '../';
+set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 require_once 'auth.php';
 require '../dbconnect.php';
 
