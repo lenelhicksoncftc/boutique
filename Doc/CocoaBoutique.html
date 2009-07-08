@@ -12,13 +12,13 @@
 <a name="HeaderDoc_methods"></a>
 <dl>
 <dt><tt><a href="CompositePage.html#//apple_ref/doc/compositePage/c/instm/defaultCountry" target="_top">-defaultCountry</a></tt></dt>
-<dd>Optional delegate method. Override the default country of United States.
+<dd>Optional delegate method. Override the default country.
  </dd>
 <dt><tt><a href="CompositePage.html#//apple_ref/doc/compositePage/c/instm/licenseValidator" target="_top">-licenseValidator </a></tt></dt>
 <dd>Delegate method.
 </dd>
 <dt><tt><a href="CompositePage.html#//apple_ref/doc/compositePage/c/instm/overrideSSL" target="_top">-overrideSSL</a></tt></dt>
-<dd>Delegate method. Indicates that SSL should not be required for connecting to the online store.  Useful for development and testing.
+<dd>Optional delegate method. Indicates that SSL should not be required for connecting to the online store.  Useful for development and testing.
  </dd>
 <dt><tt><a href="CompositePage.html#//apple_ref/doc/compositePage/c/instm/productName" target="_top">-productName </a></tt></dt>
 <dd>Delegate method. Returns the name of the product
@@ -27,7 +27,7 @@
 <dd>Delegate method. Called when an error occurs during the communication with web server
 </dd>
 <dt><tt><a href="CompositePage.html#//apple_ref/doc/compositePage/c/instm/storeURL" target="_top">-storeURL</a></tt></dt>
-<dd>Delegate method. Returns the URL for the purchaseSoftware.php
+<dd>Delegate method. Returns the URL path to the folder containing the PHP Cocoa Boutique files.
 </dd>
 <dt><tt><a href="CompositePage.html#//apple_ref/doc/compositePage/c/instm/validLicense:withLicenseData:" target="_top">-validLicense:withLicenseData:</a></tt></dt>
 <dd>Delegate method. Called when license data has been retrieved from the web server
@@ -36,7 +36,7 @@
 <hr><!-- headerDoc=instm;  uid=//apple_ref/doc/compositePage/c/instm/defaultCountry;  name=defaultCountry -->
 <a name="//apple_ref/doc/compositePage/c/instm/defaultCountry"></a>
 <table border="0"  cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5"><h3><a name="defaultCountry">defaultCountry</a></h3>
-</td></tr></table><hr><p><!-- begin abstract -->Optional delegate method. Override the default country of United States.
+</td></tr></table><hr><p><!-- begin abstract -->Optional delegate method. Override the default country.
  <!-- end abstract --></p>
 <p></p><pre>- (<!-- a logicalPath="//apple_ref/c/cl/NSString //apple_ref/c/tdef/NSString //apple_ref/c/tag/NSString //apple_ref/c/econst/NSString //apple_ref/c/struct/NSString //apple_ref/c/clconst/NSString //apple_ref/c/intf/NSString" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<span class="var">defaultCountry</span>;  </pre>
 <p></p><hr><!-- headerDoc=instm;  uid=//apple_ref/doc/compositePage/c/instm/licenseValidator;  name=licenseValidator -->
@@ -51,7 +51,7 @@
 <p></p><hr><!-- headerDoc=instm;  uid=//apple_ref/doc/compositePage/c/instm/overrideSSL;  name=overrideSSL -->
 <a name="//apple_ref/doc/compositePage/c/instm/overrideSSL"></a>
 <table border="0"  cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5"><h3><a name="overrideSSL">overrideSSL</a></h3>
-</td></tr></table><hr><p><!-- begin abstract -->Delegate method. Indicates that SSL should not be required for connecting to the online store.  Useful for development and testing.
+</td></tr></table><hr><p><!-- begin abstract -->Optional delegate method. Indicates that SSL should not be required for connecting to the online store.  Useful for development and testing.
  <!-- end abstract --></p>
 <p></p><pre>- (<!-- a logicalPath="//apple_ref/c/cl/BOOL //apple_ref/c/tdef/BOOL //apple_ref/c/tag/BOOL //apple_ref/c/econst/BOOL //apple_ref/c/struct/BOOL //apple_ref/c/clconst/BOOL //apple_ref/c/intf/BOOL" --><span class="type">BOOL</span><!-- /a -->)<span class="var">overrideSSL</span>;  </pre>
 <p></p><hr><!-- headerDoc=instm;  uid=//apple_ref/doc/compositePage/c/instm/productName;  name=productName -->
@@ -76,7 +76,7 @@
 <p></p><hr><!-- headerDoc=instm;  uid=//apple_ref/doc/compositePage/c/instm/storeURL;  name=storeURL -->
 <a name="//apple_ref/doc/compositePage/c/instm/storeURL"></a>
 <table border="0"  cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5"><h3><a name="storeURL">storeURL</a></h3>
-</td></tr></table><hr><p><!-- begin abstract -->Delegate method. Returns the URL for the purchaseSoftware.php
+</td></tr></table><hr><p><!-- begin abstract -->Delegate method. Returns the URL path to the folder containing the PHP Cocoa Boutique files.
 <!-- end abstract --></p>
 <p></p><pre>- (<!-- a logicalPath="//apple_ref/c/cl/NSString //apple_ref/c/tdef/NSString //apple_ref/c/tag/NSString //apple_ref/c/econst/NSString //apple_ref/c/struct/NSString //apple_ref/c/clconst/NSString //apple_ref/c/intf/NSString" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<span class="var">storeURL</span>;  </pre>
 <p></p><hr><!-- headerDoc=instm;  uid=//apple_ref/doc/compositePage/c/instm/validLicense:withLicenseData:;  name=validLicense:withLicenseData: -->
@@ -90,5 +90,5 @@
 <dt><code>valid </code></dt><dd>Is the license data valid?</dd>
 <dt><code>licenseData </code></dt><dd>The AquaticPrime license data</dd>
 </dl>
-<p></p><p>Last Updated: Sunday, April 26, 2009
+<p></p><p>Last Updated: Tuesday, July 07, 2009
 </p></body></html>

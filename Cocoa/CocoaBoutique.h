@@ -60,7 +60,7 @@
 
 /*!
     @method     storeURL
-    @abstract   Delegate method. Returns the URL path to the folder containing the PHP store files.
+    @abstract   Delegate method. Returns the URL path to the folder containing the PHP Cocoa Boutique files.
 */
 
 - (NSString *)storeURL;
@@ -100,14 +100,14 @@
 
 /*!
  @method     overrideSSL
- @abstract   Delegate method. Indicates that SSL should not be required for connecting to the online store.  Useful for development and testing.
+ @abstract   Optional delegate method. Indicates that SSL should not be required for connecting to the online store.  Useful for development and testing.
  */
 
 - (BOOL)overrideSSL;
 
 /*!
  @method     defaultCountry
- @abstract   Optional delegate method. Override the default country of United States.
+ @abstract   Optional delegate method. Override the default country.
  */
 
 - (NSString *)defaultCountry;
