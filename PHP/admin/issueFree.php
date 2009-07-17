@@ -31,7 +31,7 @@ if (isset($_POST['firstname'])) {
 	$htmlReceipt = ereg_replace("[[:alpha:]]+://[^<>[:space:]]+[[:alnum:]/]",
                      "<a href=\"\\0\">\\0</a>", $htmlReceipt);
 	
-	boutique_mail ($_POST['email'], "Your free license", $plainReceipt, $htmlReceipt);
+	boutique_mail ($_POST['email'], "Your complimentary license", $plainReceipt, $htmlReceipt);
 	set_info("Free license issued to " . $_POST['email']);
 	
 }

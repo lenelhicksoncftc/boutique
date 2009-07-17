@@ -46,7 +46,7 @@ define(RECEIPT_MESSAGE,$receiptMessage);
 $freeMessage =
 "Hello ##NAME##,
 
-This is your confirmation email for a free license of ##PRODUCT##. If you have not already downloaded ##PRODUCT## please do so now: http://mycompany.com/download
+This is your confirmation email for a complimentary license of ##PRODUCT##. If you have not already downloaded ##PRODUCT## please do so now: http://mycompany.com/download
 
 Register by clicking the \"License Lookup\" button in the Purchase window and enter the transaction ID found below.
 
