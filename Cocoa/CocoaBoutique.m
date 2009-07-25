@@ -50,10 +50,10 @@
 		ABMultiValue *address = [me valueForProperty:@"Address"];
 		if ([address count] > 0) {
 			NSDictionary *address1 = [address valueAtIndex:[address indexForIdentifier:[address primaryIdentifier]]];
-			[streetAddressField setStringValue:[address1 objectForKey:@"Street"]];
-			[cityField setStringValue:[address1 objectForKey:@"City"]];
-			[stateField setStringValue:[address1 objectForKey:@"State"]];
-			[postalField setStringValue:[address1 objectForKey:@"ZIP"]];
+			if ([address1 objectForKey:@"Street"]) [streetAddressField setStringValue:[address1 objectForKey:@"Street"]];
+			if ([address1 objectForKey:@"City"]) [cityField setStringValue:[address1 objectForKey:@"City"]];
+			if ([address1 objectForKey:@"State"]) [stateField setStringValue:[address1 objectForKey:@"State"]];
+			if ([address1 objectForKey:@"ZIP"]) [postalField setStringValue:[address1 objectForKey:@"ZIP"]];
 		}
 		ABMultiValue *emails = [me valueForProperty:@"Email"];
 		if ([emails count] > 0)
