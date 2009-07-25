@@ -2,9 +2,9 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.03">
 	<data>
 		<int key="IBDocument.SystemTarget">1050</int>
-		<string key="IBDocument.SystemVersion">9G2110</string>
+		<string key="IBDocument.SystemVersion">9J61</string>
 		<string key="IBDocument.InterfaceBuilderVersion">677</string>
-		<string key="IBDocument.AppKitVersion">949.43</string>
+		<string key="IBDocument.AppKitVersion">949.46</string>
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -460,7 +460,6 @@
 														<reference key="NSMenu" ref="983917909"/>
 														<string key="NSTitle">1</string>
 														<string key="NSKeyEquiv"/>
-														<int key="NSKeyEquivModMask">1048576</int>
 														<int key="NSMnemonicLoc">2147483647</int>
 														<int key="NSState">1</int>
 														<reference key="NSOnImage" ref="212475222"/>
@@ -478,7 +477,6 @@
 																<reference key="NSMenu" ref="983917909"/>
 																<string key="NSTitle">2</string>
 																<string key="NSKeyEquiv"/>
-																<int key="NSKeyEquivModMask">1048576</int>
 																<int key="NSMnemonicLoc">2147483647</int>
 																<reference key="NSOnImage" ref="212475222"/>
 																<reference key="NSMixedImage" ref="686052140"/>
@@ -489,7 +487,6 @@
 																<reference key="NSMenu" ref="983917909"/>
 																<string key="NSTitle">3</string>
 																<string key="NSKeyEquiv"/>
-																<int key="NSKeyEquivModMask">1048576</int>
 																<int key="NSMnemonicLoc">2147483647</int>
 																<reference key="NSOnImage" ref="212475222"/>
 																<reference key="NSMixedImage" ref="686052140"/>
@@ -588,7 +585,6 @@
 															</object>
 														</object>
 													</object>
-													<int key="NSSelectedIndex">5</int>
 													<int key="NSPreferredEdge">1</int>
 													<bool key="NSUsesItemFromMenu">YES</bool>
 													<bool key="NSAltersState">YES</bool>
@@ -1660,8 +1656,6 @@ IHdpdGggYWxsIHlvdXIgVHJhbnNhY3Rpb24gSURzLg</string>
 							<reference ref="868596387"/>
 							<reference ref="635806774"/>
 							<reference ref="389139336"/>
-							<reference ref="680640055"/>
-							<reference ref="1073554390"/>
 							<reference ref="871717739"/>
 							<reference ref="302010147"/>
 							<reference ref="550100410"/>
@@ -1691,6 +1685,8 @@ IHdpdGggYWxsIHlvdXIgVHJhbnNhY3Rpb24gSURzLg</string>
 							<reference ref="40386171"/>
 							<reference ref="648205586"/>
 							<reference ref="814712826"/>
+							<reference ref="680640055"/>
+							<reference ref="1073554390"/>
 						</object>
 						<reference key="parent" ref="577112945"/>
 					</object>
@@ -2688,9 +2684,9 @@ IHdpdGggYWxsIHlvdXIgVHJhbnNhY3Rpb24gSURzLg</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{313, 111}, {438, 460}}</string>
+					<string>{{409, 353}, {438, 460}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{313, 111}, {438, 460}}</string>
+					<string>{{409, 353}, {438, 460}}</string>
 					<boolean value="YES"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<object class="NSMutableDictionary">
@@ -2752,7 +2748,7 @@ IHdpdGggYWxsIHlvdXIgVHJhbnNhY3Rpb24gSURzLg</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{456, 96}, {100, 243}}</string>
+					<string>{{519, 196}, {100, 243}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
