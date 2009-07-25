@@ -29,7 +29,7 @@ function licenseForTransaction($transactionID,$duringSale) {
 	
 	if (mysql_num_rows($query) === 0) return FALSE;
 	
-	if ($duringSale) $b = 1; else; $b = 0;
+	if ($duringSale) $b = 1; else $b = 0;
 	$sql = "insert into requests (transactionID, duringSale) values ('" . mysql_escape_string($transactionID) . "', " . $b . ")";
 	$request_insert = mysql_query($sql) or exit("ERROR: " . mysql_error($dbconnection));
 	
