@@ -70,6 +70,8 @@
 		defaultCountry = [[NSLocale currentLocale] displayNameForKey:NSLocaleCountryCode value:[[NSLocale currentLocale] objectForKey:NSLocaleCountryCode]];
 	[countryPopUp selectItemWithTitle:defaultCountry];
 	[countryPopUp synchronizeTitleAndSelectedItem];
+	[expirationMonthPopUp selectItemWithTitle:[NSString stringWithFormat:@"%d",[[NSCalendarDate calendarDate] monthOfYear]]];
+	[expirationMonthPopUp synchronizeTitleAndSelectedItem];
 }
 
 - (IBAction)processOrder:(id)sender {
