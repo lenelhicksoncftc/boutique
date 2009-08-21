@@ -19,8 +19,8 @@ if (!isset($_POST['firstName']) OR
 require_once 'CallerService.php';
 session_start();
 
-$firstName = urlencode($_POST['firstName']);
-$lastName = urlencode($_POST['lastName']);
+$firstName = $_POST['firstName'];
+$lastName = $_POST['lastName'];
 $creditCardType = urlencode($_POST['creditCardType']);
 $creditCardNumber = urlencode($_POST['creditCardNumber']);
 $expDateMonth = urlencode($_POST['expDateMonth']);
@@ -30,11 +30,11 @@ $padDateMonth = str_pad($expDateMonth, 2, '0', STR_PAD_LEFT);
 
 $expDateYear = urlencode($_POST['expDateYear']);
 $cvv2Number = urlencode($_POST['cvv2Number']);
-$address1 = urlencode($_POST['address1']);
-$city = urlencode($_POST['city']);
-$state = urlencode($_POST['state']);
-$postal = urlencode($_POST['postal']);
-$country = urlencode($_POST['country']);
+$address1 = $_POST['address1'];
+$city = $_POST['city'];
+$state = $_POST['state'];
+$postal = $_POST['postal'];
+$country = $_POST['country'];
 $email = $_POST['email'];
 
 $product = $_POST['product'];
@@ -66,9 +66,21 @@ if (isset($_POST['coupon']) and $_POST['coupon'] != "") {
 /* Construct the request string that will be sent to PayPal.
    The variable $nvpstr contains all the variables and is a
    name value pair string with & as a delimiter */
-$nvpstr="&PAYMENTACTION=Authorization&AMT=$amount&CREDITCARDTYPE=$creditCardType&ACCT=$creditCardNumber&EXPDATE=".
-$padDateMonth.$expDateYear."&CVV2=$cvv2Number&FIRSTNAME=$firstName&LASTNAME=$lastName&STREET=$address1&CITY=$city&STATE=$state".
-"&ZIP=$postal&COUNTRYCODE=$country&EMAIL=$email&CURRENCYCODE=$currencyCode";
+$nvpstr="&PAYMENTACTION=Authorization" .
+"&AMT=$amount" .
+"&CREDITCARDTYPE=$creditCardType" .
+"&ACCT=$creditCardNumber" .
+"&EXPDATE=$padDateMonth$expDateYear" .
+"&CVV2=$cvv2Number" .
+"&FIRSTNAME=" . urlencode($firstName) .
+"&LASTNAME=" . urlencode($lastName) .
+"&STREET=" . urlencode($address1) .
+"&CITY=" . urlencode($city) .
+"&STATE=" . urlencode($state) .
+"&ZIP=" . urlencode($postal) .
+"&COUNTRYCODE=" . urlencode($country) .
+"&EMAIL=" . urlencode($email) .
+"&CURRENCYCODE=$currencyCode";
 
 /* Make the API call to PayPal, using API signature.
    The API response is stored in an associative array called $resArray */
