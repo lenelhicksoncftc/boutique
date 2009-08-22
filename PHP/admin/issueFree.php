@@ -47,7 +47,7 @@ require 'header.inc.php';
 <tr><td class="formlabel">E-mail:</td><td><input type="text" name="email" size="50"></td></tr>
 <tr><td class="formlabel">Product:</td><td><select name="product">
 <?php 
-$sql = "select id,name from products";
+$sql = "select id,name from products order by name";
 $query = mysql_query($sql) or exit("ERROR: " . mysql_error($dbconnection));
 while ($row = mysql_fetch_row($query)) {
 	echo "<option value=\"{$row[0]}\">{$row[1]}</option>";
