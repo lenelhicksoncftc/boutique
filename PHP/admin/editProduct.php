@@ -61,7 +61,7 @@ if (isset($_GET['id'])) {
 	$action = "new";
 }
 
-$page_title = "Edit Products";
+$page_title = "Edit Product";
 
 require 'header.inc.php';
 echo "<form method=\"post\" action=\"{$_SERVER['PHP_SELF']}\">";
