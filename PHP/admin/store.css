@@ -46,7 +46,7 @@ td {
 }
 
 td.formlabel {
-	vertical-align: bottom;
+	vertical-align: top;
 	font-family: "Lucida Grande",Verdana,sans-serif;
 	text-align: right;
 	color: rgb(105,46,46);
