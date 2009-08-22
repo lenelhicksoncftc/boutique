@@ -13,10 +13,7 @@ $query = mysql_query($sql) or exit("ERROR: " . mysql_error($dbconnection));
 while ($row = mysql_fetch_row($query)) {
 	echo "<p>$row[1] - $row[2] $row[3] <a href=\"editProduct.php?id=$row[0]\">edit</a></p>\n";
 }
-echo "<p><a href=\"editProduct.php\">New product</a></p>"
-?>
-
-<?php
+echo "<p><a href=\"editProduct.php\">New product</a></p>";
 
 require 'footer.inc.php';
 ?>
