@@ -93,6 +93,7 @@ define('API_SIGNATURE', 'A.d9eRKfd1yVkRrtmMfCFLTqa6M9AyodL0SJkhYztxUi8W9pCXF6.4N
 */
 
 define('API_ENDPOINT', 'https://api-3t.sandbox.paypal.com/nvp');
+#define('API_ENDPOINT', 'https://api-3t.paypal.com/nvp');
 /**
 USE_PROXY: Set this variable to TRUE to route all the API requests through proxy.
 like define('USE_PROXY',TRUE);
