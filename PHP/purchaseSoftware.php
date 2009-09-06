@@ -36,6 +36,7 @@ $state = $_POST['state'];
 $postal = $_POST['postal'];
 $country = $_POST['country'];
 $email = $_POST['email'];
+$company = $_POST['company'];
 
 $product = $_POST['product'];
 
@@ -97,7 +98,7 @@ require 'contactFunctions.php';
 $contact = IDforContactEmail($email);
 
 if ($contact === FALSE) {
-	$contact = newContact($firstName,$lastName,"",$address1,"",$city,$state,$postal,$country,"",$email,"");
+	$contact = newContact($firstName,$lastName,$company,$address1,"",$city,$state,$postal,$country,"",$email,"");
 }
 
 if($ack!="SUCCESS")  {
