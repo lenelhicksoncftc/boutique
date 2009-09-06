@@ -82,4 +82,39 @@ function incrementCouponUsage($id) {
 	$query = mysql_query($sql) or exit("ERROR: " . mysql_error($dbconnection));
 }
 
+function refundTransaction($id,$amount,$revoke=FALSE) {
+	global $dbconnection;
+	settype($amount,"float");
+	
+	$sql = "select products.currency, transactions.gross, transactions.paypalTransactionId from products,transactions where transactions.id = '$id' and products.id = transactions.item";
+	$query = mysql_query($sql) or exit("ERROR: " . mysql_error($dbconnection));
+	
+	$currency = mysql_result($query,0,"currency");
+	$gross = mysql_result($query,0,"gross");
+	$paypalTransactionId = mysql_result($query,0,"paypalTransactionId");
+	settype($gross,"float");
+	require_once 'CallerService.php';
+	
+	$transaction_id=urlencode($paypalTransactionId);
+	if ($amount == $gross) $refundType = "Full"; else $refundType = "Partial";
+	$refundType=urlencode($refundType);
+	$amount=urlencode($amount);
+	$currency=urlencode($currency);
+	$nvpStr="&TRANSACTIONID=$transaction_id&REFUNDTYPE=$refundType&CURRENCYCODE=$currency&NOTE=";
+	if(strtoupper($refundType)=="PARTIAL") $nvpStr=$nvpStr."&AMT=$amount";
+	$resArray=hash_call("RefundTransaction",$nvpStr);
+
+	$ack = strtoupper($resArray["ACK"]);
+
+	if($ack!="SUCCESS"){
+		set_error("Refund unsuccessful");
+		return;
+	}
+	
+	$sql = "update transactions set refund = $amount";
+	if ($revoke) $sql .= ", revoked = 1";
+	$sql .= " where id = '$id'";
+	$query = mysql_query($sql) or exit("ERROR: " . mysql_error($dbconnection));
+}
+
 ?>
