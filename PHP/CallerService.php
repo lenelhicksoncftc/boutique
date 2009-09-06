@@ -12,20 +12,6 @@ DoDirectPaymentReceipt.php and DoExpressCheckoutPayment.php.
 ****************************************************/
 require_once 'config.php';
 
-$API_UserName=API_USERNAME;
-
-
-$API_Password=API_PASSWORD;
-
-
-$API_Signature=API_SIGNATURE;
-
-
-$API_Endpoint =API_ENDPOINT;
-
-
-$version=VERSION;
-
 //session_start();
 
 /**
@@ -39,11 +25,10 @@ $version=VERSION;
 function hash_call($methodName,$nvpStr)
 {
 	//declaring of global variables
-	global $API_Endpoint,$version,$API_UserName,$API_Password,$API_Signature,$nvp_Header;
 
 	//setting the curl parameters.
 	$ch = curl_init();
-	curl_setopt($ch, CURLOPT_URL,$API_Endpoint);
+	curl_setopt($ch, CURLOPT_URL,API_ENDPOINT);
 	curl_setopt($ch, CURLOPT_VERBOSE, 1);
 
 	//turning off the server and peer verification(TrustManager Concept).
@@ -58,8 +43,7 @@ function hash_call($methodName,$nvpStr)
 	curl_setopt ($ch, CURLOPT_PROXY, PROXY_HOST.":".PROXY_PORT); 
 
 	//NVPRequest for submitting to server
-	$nvpreq="METHOD=".urlencode($methodName)."&VERSION=".urlencode($version)."&PWD=".urlencode($API_Password)."&USER=".urlencode($API_UserName)."&SIGNATURE=".urlencode($API_Signature).$nvpStr;
-
+	$nvpreq="METHOD=".urlencode($methodName)."&VERSION=".urlencode(VERSION)."&PWD=".urlencode(API_PASSWORD)."&USER=".urlencode(API_USERNAME)."&SIGNATURE=".urlencode(API_SIGNATURE).$nvpStr;
 	//setting the nvpreq as POST FIELD to curl
 	curl_setopt($ch,CURLOPT_POSTFIELDS,$nvpreq);
 
