@@ -2,8 +2,9 @@
 //  AppController.h
 //  BoutiqueDemo
 //
-//  Created by Fraser Hess on 3/31/09.
-//  Copyright 2009 Sweeter Rhythm. All rights reserved.
+//  Copyright © 2009 Sweeter Rhythm LLC/No Thirst Software LLC/Atomic Bird LLC
+//  All rights reserved.
+//  BSD License http://www.opensource.org/licenses/bsd-license.php
 //
 
 #import <Cocoa/Cocoa.h>

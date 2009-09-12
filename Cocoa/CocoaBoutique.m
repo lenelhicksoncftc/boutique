@@ -1,13 +1,9 @@
 //
 //  CocoaBoutique.m
 //
-//  Created by Fraser Hess on 2/23/09.
-//
-//  26-MAY-2009 Kevin Hoctor
-//    - Revised UI in Interface Builder
-//	  - Replaced _delegate with [self delegate] where appropriate
-//    - Replaced hard coded defaultCountry with NSLocale lookup
-//    - Minor code refactoring
+//  Copyright © 2009 Sweeter Rhythm LLC/No Thirst Software LLC/Atomic Bird LLC
+//  All rights reserved.
+//  BSD License http://www.opensource.org/licenses/bsd-license.php
 //
 
 #import "CocoaBoutique.h"

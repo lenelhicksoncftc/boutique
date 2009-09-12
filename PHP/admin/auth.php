@@ -1,4 +1,11 @@
 <?php
+
+//  auth.php
+//
+//  Copyright © 2009 Sweeter Rhythm LLC/No Thirst Software LLC/Atomic Bird LLC
+//  All rights reserved.
+//  BSD License http://www.opensource.org/licenses/bsd-license.php
+
 require 'session.php';
 if (isset($_SESSION['storeuser'])) {
 	$storeuser=$_SESSION['storeuser'];

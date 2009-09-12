@@ -1,4 +1,11 @@
 <?php
+
+//  mailFunctions.php
+//
+//  Copyright © 2009 Sweeter Rhythm LLC/No Thirst Software LLC/Atomic Bird LLC
+//  All rights reserved.
+//  BSD License http://www.opensource.org/licenses/bsd-license.php
+
 function boutique_mail ($to, $subject, $plain_body, $html_body="", $bcc=FALSE) {
 
 	include_once 'Mail.php';

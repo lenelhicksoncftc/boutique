@@ -1,7 +1,9 @@
 //
 //  CocoaBoutique.h
 //
-//  Created by Fraser Hess on 2/23/09.
+//  Copyright © 2009 Sweeter Rhythm LLC/No Thirst Software LLC/Atomic Bird LLC
+//  All rights reserved.
+//  BSD License http://www.opensource.org/licenses/bsd-license.php
 //
 
 #import <Cocoa/Cocoa.h>

@@ -1,4 +1,11 @@
 <?php
+
+//  logon2.php
+//
+//  Copyright © 2009 Sweeter Rhythm LLC/No Thirst Software LLC/Atomic Bird LLC
+//  All rights reserved.
+//  BSD License http://www.opensource.org/licenses/bsd-license.php
+
 if (isset($_POST['username'])) {
 	require 'session.php';
 	$posted_username=mysql_escape_string($_POST['username']);
