@@ -8,13 +8,13 @@ if (isset($page_title) === FALSE) $page_title="Cocoa Boutique";
 <html>
 <head>
 <title><?php echo $page_title; ?></title>
-<link rel="stylesheet" href="store.css" type="text/css">
+<link rel="stylesheet" href="boutique.css" type="text/css">
 <link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon">
 <link rel="icon" href="favicon.ico" type="image/vnd.microsoft.icon">
 </head>
 <body>
 <div id="wrapper">
-<p><a href="index.php"><img src="images/logo.png" alt="store" border="0"></a></p>
+<p><a href="index.php"><img src="images/logo.png" alt="Cocoa Boutique" border="0"></a></p>
 
 <?php 
 

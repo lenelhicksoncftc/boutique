@@ -8,7 +8,7 @@
 
 require 'session.php';
 
-$page_title = "store logon";
+$page_title = "Cocoa Boutique logon";
 
 require 'header.inc.php';
 
