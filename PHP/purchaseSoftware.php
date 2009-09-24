@@ -41,6 +41,7 @@ $city = $_POST['city'];
 $state = $_POST['state'];
 $postal = $_POST['postal'];
 $country = $_POST['country'];
+if ($country == "US") $state = strtoupper($state);
 $email = $_POST['email'];
 $company = $_POST['company'];
 
