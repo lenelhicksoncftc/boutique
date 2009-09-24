@@ -17,3 +17,21 @@ All configuration and response handling is setup by implementing the Cocoa Bouti
 * MySQL 4
 * AquaticPrime (included server-side)
 * PayPal Website Payments Pro
+
+### Contributors
+
+* Fraser Hess
+* Kevin Hoctor
+* Tom Harrington
+
+### Needs
+
+* Put it in your app
+* Report/fix issues
+* Contribute ideas
+* Write docs
+* Blog/podcast about it
+* Record screencasts
+* Draw better graphics
+* Send money
+* Send ice cream
