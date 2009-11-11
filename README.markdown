@@ -18,6 +18,10 @@ All configuration and response handling is setup by implementing the Cocoa Bouti
 * AquaticPrime (included server-side)
 * PayPal Website Payments Pro
 
+### Google Group
+
+[http://groups.google.com/group/cocoa-boutique](http://groups.google.com/group/cocoa-boutique)
+
 ### Contributors
 
 * Fraser Hess
