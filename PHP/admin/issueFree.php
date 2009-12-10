@@ -14,33 +14,35 @@ require '../dbconnect.php';
 if (isset($_POST['firstname'])) {
 	if ($_POST['firstname'] == "" OR $_POST['lastname'] == "" OR $_POST['email'] == "") {
 		set_error("Please fill out the form completely");
-	}
-	require '../contactFunctions.php';
-	require '../transactionFunctions.php';
-	
-	$contactID = IDforContactEmail($_POST['email']);
-	if ($contactID === FALSE) {
-		$contactID = newContact($_POST['firstname'],$_POST['lastname'],"","","","","","","","",$_POST['email'],"");
-	}
-	$transactionID = newTransaction("",$contactID,$_POST['product'],0);
-	
-	require '../mailFunctions.php';
-	
-	$sql = "select name from products where id = " . mysql_escape_string($_POST['product']);
-	$query = mysql_query($sql) or exit("ERROR: " . mysql_error($dbconnection));
-	$product = mysql_result($query,0,"name");
-	
-	$plainReceipt = FREE_MESSAGE;
-	$plainReceipt = str_replace(array("##NAME##", "##PRODUCT##", "##CODE##"), array($_POST['firstname'] . " " . $_POST['lastname'], $product, $transactionID), $plainReceipt);
+	} else {
+		require '../contactFunctions.php';
+		require '../transactionFunctions.php';
 
-	$htmlReceipt = nl2br($plainReceipt);
+		$contactID = IDforContactEmail($_POST['email']);
+		if ($contactID === FALSE) {
+			$contactID = newContact($_POST['firstname'],$_POST['lastname'],"","","","","","","","",$_POST['email'],"");
+		}
+		$transactionID = newTransaction("",$contactID,$_POST['product'],0);
 
-	$htmlReceipt = ereg_replace("[[:alpha:]]+://[^<>[:space:]]+[[:alnum:]/]",
+		require '../mailFunctions.php';
+
+		$sql = "select name from products where id = " . mysql_escape_string($_POST['product']);
+		$query = mysql_query($sql) or exit("ERROR: " . mysql_error($dbconnection));
+		$product = mysql_result($query,0,"name");
+
+		$plainReceipt = FREE_MESSAGE;
+		$plainReceipt = str_replace(array("##NAME##", "##PRODUCT##", "##CODE##"), array($_POST['firstname'] . " " . $_POST['lastname'], $product, $transactionID), $plainReceipt);
+
+		$htmlReceipt = nl2br($plainReceipt);
+
+		$htmlReceipt = ereg_replace("[[:alpha:]]+://[^<>[:space:]]+[[:alnum:]/]",
                      "<a href=\"\\0\">\\0</a>", $htmlReceipt);
-	
-	boutique_mail ($_POST['email'], "Your complimentary license", $plainReceipt, $htmlReceipt);
-	set_info("Free license issued to " . $_POST['email']);
-	
+
+		boutique_mail ($_POST['email'], "Your complimentary license", $plainReceipt, $htmlReceipt);
+		set_info("Free license issued to " . $_POST['email']);
+
+	}
+
 }
 
 $page_title = "Issue Free License";
