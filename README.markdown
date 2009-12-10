@@ -21,6 +21,7 @@ All configuration and response handling is setup by implementing the Cocoa Bouti
 ### Communication
 
 Google Group - [http://groups.google.com/group/cocoa-boutique](http://groups.google.com/group/cocoa-boutique)
+
 Twitter - [@cocoaboutique](http://twitter.com/cocoaboutique)
 
 ### Contributors
