@@ -27,6 +27,14 @@ if (isset($_SESSION['info'])) {
 	unset ($_SESSION['info']);
 }
 
+if (!$hideToolbar) {
+
 ?>
 
 <p align="center"><a href="index.php">Home</a> &nbsp;<a href="products.php">Products</a> &nbsp;<a href="coupons.php">Coupons</a> &nbsp;<a href="search.php">Search</a> &nbsp;<a href="issueFree.php">Issue Free License</a></p>
+
+<?php 
+
+}
+
+?>

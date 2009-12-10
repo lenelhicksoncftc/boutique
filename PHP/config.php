@@ -2,7 +2,7 @@
 
 //  config.php
 //
-//  Copyright © 2009 Sweeter Rhythm LLC/No Thirst Software LLC/Atomic Bird LLC
+//  Copyright ï¿½ 2009 Sweeter Rhythm LLC/No Thirst Software LLC/Atomic Bird LLC
 //  All rights reserved.
 //  BSD License http://www.opensource.org/licenses/bsd-license.php
 
@@ -16,7 +16,6 @@ define (DB_PASS, "");
 // Company Configuration
 
 define(COMPANY_NAME, "My Company");
-
 define(MAIL_FROM, "me@mycompany.com");
 
 // E-mail Templates
@@ -24,7 +23,11 @@ define(MAIL_FROM, "me@mycompany.com");
 define(MAIL_LOGO, "/usr/local/apache2/htdocs/store/admin/images/logo.png");
 
 // Address for BCC of receipts.  Leave empty for no BCC
+
 define(MAIL_BCC, "me@mycompany.com");
+
+// Comma separated list of domains allow to self-issue free licenses
+define(FREE_LICENSE_DOMAINS, "apple.com,filemaker.com,braeburncapital.com,asia.apple.com,euro.apple.com");
 
 $receiptMessage =
 "Hello ##NAME##,
