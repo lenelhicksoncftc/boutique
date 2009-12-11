@@ -61,6 +61,9 @@
 - (BOOL)isValidVisaNumber:(NSString *)numberString;
 - (BOOL)isValidDiscoverNumber:(NSString *)numberString;
 - (BOOL)isValidMasterCardNumber:(NSString *)numberString;
+- (BOOL)validateNotEmpty: (NSString *)candidate;
+- (BOOL)validateEmail: (NSString *)candidate;
+- (void)validateForm:(NSNotification *)note;
 @end
 
 @interface NSObject (CocoaBoutiqueDelegateMethods)

@@ -20,10 +20,12 @@
 		_countries = nil;
 		_delegate = nil;
 	}
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(validateForm:) name:NSControlTextDidChangeNotification object:nil];
 	return self;
 }
 
-- (void) dealloc {
+- (void)dealloc {
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	[self setCountries:nil];
 	[self setDelegate:nil];
 	[super dealloc];
@@ -308,6 +310,38 @@
 	}
 
 	return YES;
+}
+
+#pragma mark Form validation
+
+- (void)validateForm:(NSNotification *)note {
+	NSLog(@"validateForm:");
+	if ([self validateNotEmpty:[firstNameField stringValue]] &&
+		[self validateNotEmpty:[lastNameField stringValue]] &&
+		[self validateNotEmpty:[streetAddressField stringValue]] &&
+		[self validateNotEmpty:[cityField stringValue]] &&
+		[self validateNotEmpty:[postalField stringValue]] &&
+		[self validateEmail:[emailField stringValue]] &&
+		[self validateNotEmpty:[cardNumberField stringValue]] &&
+		[self validateNotEmpty:[securityNumberField stringValue]]) {
+		[purchaseButton setTitle:@"Purchase"];
+		[purchaseButton setEnabled:YES];
+		return;
+	}
+	[purchaseButton setTitle:@"Form not complete"];
+	[purchaseButton setEnabled:NO];
+}
+
+- (BOOL)validateNotEmpty: (NSString *)candidate {
+	if (!candidate || [candidate length] == 0) return NO; else return YES;
+}
+
+- (BOOL)validateEmail: (NSString *)candidate {
+	NSString *emailRegex = @"[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?";
+	
+	NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+
+	return [emailTest evaluateWithObject:candidate];
 }
 
 #pragma mark Tab switching
