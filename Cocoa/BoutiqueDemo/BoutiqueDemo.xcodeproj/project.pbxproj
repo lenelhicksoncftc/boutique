@@ -15,6 +15,7 @@
 		4C48890F0F830CFF009329F0 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C48890E0F830CFF009329F0 /* AddressBook.framework */; };
 		4C51585D10D28D6600EC0C8D /* DiscoverTestCases.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C51585C10D28D6600EC0C8D /* DiscoverTestCases.m */; };
 		4C5158B210D2914B00EC0C8D /* MasterCardTestCases.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5158B110D2914B00EC0C8D /* MasterCardTestCases.m */; };
+		4C51590010D2975D00EC0C8D /* NumberCleanupTestCases.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5158FF10D2975D00EC0C8D /* NumberCleanupTestCases.m */; };
 		4C8207B80F8867C40001104D /* Boutique.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C8207B70F8867C40001104D /* Boutique.xib */; };
 		4CA895C710D1CE1300CC25A2 /* LuhnTestCases.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7D7BC010D1CAB30014101F /* LuhnTestCases.m */; };
 		4CA8970910D1DF7C00CC25A2 /* VisaTestCases.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA8970810D1DF7C00CC25A2 /* VisaTestCases.m */; };
@@ -67,6 +68,8 @@
 		4C51585C10D28D6600EC0C8D /* DiscoverTestCases.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverTestCases.m; sourceTree = "<group>"; };
 		4C5158B010D2914B00EC0C8D /* MasterCardTestCases.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterCardTestCases.h; sourceTree = "<group>"; };
 		4C5158B110D2914B00EC0C8D /* MasterCardTestCases.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterCardTestCases.m; sourceTree = "<group>"; };
+		4C5158FE10D2975D00EC0C8D /* NumberCleanupTestCases.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumberCleanupTestCases.h; sourceTree = "<group>"; };
+		4C5158FF10D2975D00EC0C8D /* NumberCleanupTestCases.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumberCleanupTestCases.m; sourceTree = "<group>"; };
 		4C7D7BBF10D1CAB30014101F /* LuhnTestCases.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuhnTestCases.h; sourceTree = "<group>"; };
 		4C7D7BC010D1CAB30014101F /* LuhnTestCases.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuhnTestCases.m; sourceTree = "<group>"; };
 		4C8207B70F8867C40001104D /* Boutique.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Boutique.xib; path = ../Boutique.xib; sourceTree = SOURCE_ROOT; };
@@ -194,6 +197,8 @@
 				4C51585C10D28D6600EC0C8D /* DiscoverTestCases.m */,
 				4C5158B010D2914B00EC0C8D /* MasterCardTestCases.h */,
 				4C5158B110D2914B00EC0C8D /* MasterCardTestCases.m */,
+				4C5158FE10D2975D00EC0C8D /* NumberCleanupTestCases.h */,
+				4C5158FF10D2975D00EC0C8D /* NumberCleanupTestCases.m */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -302,6 +307,7 @@
 				4CA8970910D1DF7C00CC25A2 /* VisaTestCases.m in Sources */,
 				4C51585D10D28D6600EC0C8D /* DiscoverTestCases.m in Sources */,
 				4C5158B210D2914B00EC0C8D /* MasterCardTestCases.m in Sources */,
+				4C51590010D2975D00EC0C8D /* NumberCleanupTestCases.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
