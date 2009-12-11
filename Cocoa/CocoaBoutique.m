@@ -77,13 +77,45 @@
 #pragma mark Communication with server-side
 
 - (IBAction)processOrder:(id)sender {
+	
+	NSString *cardNumberString = [cardNumberField stringValue];
+	cardNumberString = [self cleanNumber:cardNumberString];
+	[cardNumberField setStringValue:cardNumberString];
+	
+	NSString *cardType = [[cardTypePopUp selectedItem] title];
+	if ([cardType isEqualToString:@"Visa"]) {
+		BOOL valid = [self isValidVisaNumber:cardNumberString];
+		if (!valid) {
+			NSAlert *vcAlert = [NSAlert alertWithMessageText:@"Error" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@"The card number entered is not a valid Visa card number"];
+			[vcAlert runModal];
+			return;
+		}
+	}
+	
+	if ([cardType isEqualToString:@"MasterCard"]) {
+		BOOL valid = [self isValidMasterCardNumber:cardNumberString];
+		if (!valid) {
+			NSAlert *mcAlert = [NSAlert alertWithMessageText:@"Error" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@"The card number entered is not a valid MasterCard number"];
+			[mcAlert runModal];
+			return;
+		}
+	}
+	
+	if ([cardType isEqualToString:@"Discover"]) {
+		BOOL valid = [self isValidDiscoverNumber:cardNumberString];
+		if (!valid) {
+			NSAlert *dcAlert = [NSAlert alertWithMessageText:@"Error" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@"The card number entered is not a valid Discover card number"];
+			[dcAlert runModal];
+			return;
+		}
+	}
 
 	NSString *body = [NSString stringWithFormat:@"product=%@&firstName=%@&lastName=%@&creditCardType=%@&creditCardNumber=%@&expDateMonth=%@&expDateYear=%@&cvv2Number=%@&address1=%@&city=%@&state=%@&postal=%@&country=%@&email=%@&company=%@&phone=%@&coupon=%@",
 	 [[[self delegate] productName] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
 	 [[firstNameField stringValue] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
 	 [[lastNameField stringValue] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-	 [[[cardTypePopUp selectedItem] title] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-	 [[cardNumberField stringValue] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+	 [cardType stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+	 [cardNumberString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
 	 [[[expirationMonthPopUp selectedItem] title] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
 	 [[[expirationYearPopUp selectedItem] title] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
 	 [[securityNumberField stringValue] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
@@ -176,6 +208,106 @@
 	[serverConnection release], serverConnection = nil;
 	[self processServerResponse:nil];
 	[serverResponseData release], serverResponseData = nil;
+}
+
+#pragma mark Card number validation
+
+- (NSString *)cleanNumber:(NSString *)numberString {
+	if (!numberString || [numberString length] == 0) return nil;
+	
+	NSMutableString *result = [NSMutableString string];
+	
+	NSScanner *scanner = [NSScanner scannerWithString:numberString];
+	while (![scanner isAtEnd]) {
+		NSUInteger position;
+		NSString *goodString;
+		
+		//---- search for good string
+		if([scanner scanCharactersFromSet:[NSCharacterSet decimalDigitCharacterSet] intoString:&goodString]) {
+			[result appendString:goodString];
+		}
+		
+		//---- one step if it's possible !
+		if ([scanner scanLocation] < [numberString length]) {
+			[scanner setScanLocation:[scanner scanLocation] + 1];
+			position = [scanner scanLocation];
+		}
+	}
+	
+	return result;
+}
+
+- (BOOL)isValidLuhnNumber:(NSString *)numberString {
+	if (!numberString) return NO;
+	
+	NSUInteger length = [numberString length];
+	BOOL alternate = NO;
+	NSUInteger sum = 0;
+	NSUInteger i,n;
+	
+	for (i = length - 1; i < -1; i--) {
+		n = [[numberString substringWithRange:NSMakeRange(i, 1)] intValue];
+		NSLog(@"current digit: %d", n);		
+		if (alternate) {
+			n *= 2;
+			if (n > 9) n = (n % 10) + 1;
+		}
+		alternate = !alternate;
+		
+		sum += n;
+	}
+	
+	return (sum % 10 == 0);
+}
+
+- (BOOL)isValidVisaNumber:(NSString *)numberString {
+	if (!numberString) return NO;
+	if ([numberString length] != 16 && [numberString length] != 13) return NO;
+	 
+	 BOOL validLuhn = [self isValidLuhnNumber:numberString];
+	 if (!validLuhn) return NO;
+	 
+	 if (![[numberString substringWithRange:NSMakeRange(0, 1)] isEqualToString:@"4"]) return NO;
+	 
+	 return YES;
+}
+
+- (BOOL)isValidMasterCardNumber:(NSString *)numberString {
+	if (!numberString) return NO;
+	if ([numberString length] != 16) return NO;
+	
+	BOOL validLuhn = [self isValidLuhnNumber:numberString];
+	if (!validLuhn) return NO;
+
+	int first2 = [[numberString substringWithRange:NSMakeRange(0, 2)] intValue];
+
+	if (first2 < 51 || first2 > 55) return NO;
+	
+	return YES;
+}
+
+- (BOOL)isValidDiscoverNumber:(NSString *)numberString {
+	if (!numberString) return NO;
+	if ([numberString length] != 16) return NO;
+
+	BOOL validLuhn = [self isValidLuhnNumber:numberString];
+	if (!validLuhn) return NO;
+	
+	int first2 = [[numberString substringWithRange:NSMakeRange(0, 2)] intValue];
+	int first3 = [[numberString substringWithRange:NSMakeRange(0, 3)] intValue];
+	int first4 = [[numberString substringWithRange:NSMakeRange(0, 4)] intValue];
+	int first6 = [[numberString substringWithRange:NSMakeRange(0, 6)] intValue];
+	
+	if (first2 != 65 &&
+		(first3 < 644 ||
+		first3 > 649) &&
+		first4 != 6011 &&
+		(first6 < 622126 ||
+		first6 > 622925)) {
+		return NO;
+	}
+
+	return YES;
 }
 
 #pragma mark Tab switching

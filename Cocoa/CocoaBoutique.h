@@ -1,7 +1,7 @@
 //
 //  CocoaBoutique.h
 //
-//  Copyright © 2009 Sweeter Rhythm LLC/No Thirst Software LLC/Atomic Bird LLC
+//  Copyright ï¿½ 2009 Sweeter Rhythm LLC/No Thirst Software LLC/Atomic Bird LLC
 //  All rights reserved.
 //  BSD License http://www.opensource.org/licenses/bsd-license.php
 //
@@ -56,6 +56,11 @@
 - (IBAction)switchToPurchase:(id)sender;
 - (IBAction)emailTransactionIDs:(id)sender;
 - (void)connectionToScript:(NSString *)script withBody:(NSString *)body indicator:(NSProgressIndicator *)pi;
+- (NSString *)cleanNumber:(NSString *)numberString;
+- (BOOL)isValidLuhnNumber:(NSString *)numberString;
+- (BOOL)isValidVisaNumber:(NSString *)numberString;
+- (BOOL)isValidDiscoverNumber:(NSString *)numberString;
+- (BOOL)isValidMasterCardNumber:(NSString *)numberString;
 @end
 
 @interface NSObject (CocoaBoutiqueDelegateMethods)
