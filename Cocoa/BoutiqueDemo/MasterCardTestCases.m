@@ -2,8 +2,9 @@
 //  MasterCardTestCases.m
 //  BoutiqueDemo
 //
-//  Created by Fraser Hess on 12/11/09.
-//  Copyright 2009 Sweeter Rhythm. All rights reserved.
+//  Copyright (c) 2009 Sweeter Rhythm LLC/No Thirst Software LLC/Atomic Bird LLC
+//  All rights reserved.
+//  BSD License http://www.opensource.org/licenses/bsd-license.php
 //
 
 #import "MasterCardTestCases.h"
