@@ -12,13 +12,7 @@
 
 @implementation CocoaBoutique
 
-- (id)delegate {
-	return _delegate;
-}
-
-- (void)setDelegate:(id)new_delegate {
-	_delegate = new_delegate;
-}
+#pragma mark init, dealloc, delegate
 
 - (id)init {
 	self = [super initWithWindowNibName:@"Boutique"];
@@ -34,6 +28,16 @@
 	[self setDelegate:nil];
 	[super dealloc];
 }
+
+- (id)delegate {
+	return _delegate;
+}
+
+- (void)setDelegate:(id)new_delegate {
+	_delegate = new_delegate;
+}
+
+#pragma mark windowDidLoad
 
 - (void)windowDidLoad {
 	ABPerson *me = [[ABAddressBook sharedAddressBook] me];
@@ -69,6 +73,8 @@
 	[expirationMonthPopUp selectItemWithTitle:[NSString stringWithFormat:@"%d",[[NSCalendarDate calendarDate] monthOfYear]]];
 	[expirationMonthPopUp synchronizeTitleAndSelectedItem];
 }
+
+#pragma mark Communication with server-side
 
 - (IBAction)processOrder:(id)sender {
 
@@ -151,6 +157,8 @@
 
 }
 
+#pragma mark NSURLConnection delegate methods
+
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
 	[serverResponseData appendData:data];
@@ -170,6 +178,8 @@
 	[serverResponseData release], serverResponseData = nil;
 }
 
+#pragma mark Tab switching
+
 - (IBAction)switchToLicenseLookup:(id)sender {
 	[tabview selectTabViewItemAtIndex:1];
 }
@@ -177,6 +187,8 @@
 - (IBAction)switchToPurchase:(id)sender {
 	[tabview selectTabViewItemAtIndex:0];
 }
+
+#pragma mark Form data sources
 
 - (NSArray *)expirationYears {
 	NSMutableArray *years = [NSMutableArray array];
