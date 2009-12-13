@@ -42,6 +42,18 @@
 #pragma mark windowDidLoad
 
 - (void)windowDidLoad {
+	NSString *defaultCountry;	
+	if ([[self delegate] respondsToSelector:@selector(defaultCountry)])
+		defaultCountry = [[self delegate] defaultCountry];
+	else
+		defaultCountry = [[NSLocale currentLocale] displayNameForKey:NSLocaleCountryCode value:[[NSLocale currentLocale] objectForKey:NSLocaleCountryCode]];
+	[countryPopUp selectItemWithTitle:defaultCountry];
+	[countryPopUp synchronizeTitleAndSelectedItem];
+	[expirationMonthPopUp selectItemWithTitle:[NSString stringWithFormat:@"%d",[[NSCalendarDate calendarDate] monthOfYear]]];
+	[expirationMonthPopUp synchronizeTitleAndSelectedItem];
+	
+	[cardTypePopUp sizeToFit];
+	
 	ABPerson *me = [[ABAddressBook sharedAddressBook] me];
 	if (me != nil) {
 		[firstNameField setStringValue:[me valueForProperty:@"First"]];
@@ -64,18 +76,6 @@
 		if ([phones count] > 0)
 			[phoneField setStringValue:[phones valueAtIndex:[phones indexForIdentifier:[phones primaryIdentifier]]]];
 	}
-	
-	NSString *defaultCountry;	
-	if ([[self delegate] respondsToSelector:@selector(defaultCountry)])
-		defaultCountry = [[self delegate] defaultCountry];
-	else
-		defaultCountry = [[NSLocale currentLocale] displayNameForKey:NSLocaleCountryCode value:[[NSLocale currentLocale] objectForKey:NSLocaleCountryCode]];
-	[countryPopUp selectItemWithTitle:defaultCountry];
-	[countryPopUp synchronizeTitleAndSelectedItem];
-	[expirationMonthPopUp selectItemWithTitle:[NSString stringWithFormat:@"%d",[[NSCalendarDate calendarDate] monthOfYear]]];
-	[expirationMonthPopUp synchronizeTitleAndSelectedItem];
-	
-	[cardTypePopUp sizeToFit];
 }
 
 #pragma mark Communication with server-side
