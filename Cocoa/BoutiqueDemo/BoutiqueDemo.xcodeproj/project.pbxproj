@@ -17,6 +17,7 @@
 		4C5158B210D2914B00EC0C8D /* MasterCardTestCases.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5158B110D2914B00EC0C8D /* MasterCardTestCases.m */; };
 		4C51590010D2975D00EC0C8D /* NumberCleanupTestCases.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5158FF10D2975D00EC0C8D /* NumberCleanupTestCases.m */; };
 		4C51598210D2E05A00EC0C8D /* EmailAddressTestCases.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C51598110D2E05A00EC0C8D /* EmailAddressTestCases.m */; };
+		4C77567910D46E4100A6A7EA /* AmexTestCases.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C77567810D46E4100A6A7EA /* AmexTestCases.m */; };
 		4C8207B80F8867C40001104D /* Boutique.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C8207B70F8867C40001104D /* Boutique.xib */; };
 		4CA895C710D1CE1300CC25A2 /* LuhnTestCases.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7D7BC010D1CAB30014101F /* LuhnTestCases.m */; };
 		4CA8970910D1DF7C00CC25A2 /* VisaTestCases.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA8970810D1DF7C00CC25A2 /* VisaTestCases.m */; };
@@ -73,6 +74,8 @@
 		4C5158FF10D2975D00EC0C8D /* NumberCleanupTestCases.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumberCleanupTestCases.m; sourceTree = "<group>"; };
 		4C51598010D2E05A00EC0C8D /* EmailAddressTestCases.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmailAddressTestCases.h; sourceTree = "<group>"; };
 		4C51598110D2E05A00EC0C8D /* EmailAddressTestCases.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmailAddressTestCases.m; sourceTree = "<group>"; };
+		4C77567710D46E4100A6A7EA /* AmexTestCases.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmexTestCases.h; sourceTree = "<group>"; };
+		4C77567810D46E4100A6A7EA /* AmexTestCases.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmexTestCases.m; sourceTree = "<group>"; };
 		4C7D7BBF10D1CAB30014101F /* LuhnTestCases.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuhnTestCases.h; sourceTree = "<group>"; };
 		4C7D7BC010D1CAB30014101F /* LuhnTestCases.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuhnTestCases.m; sourceTree = "<group>"; };
 		4C8207B70F8867C40001104D /* Boutique.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Boutique.xib; path = ../Boutique.xib; sourceTree = SOURCE_ROOT; };
@@ -200,6 +203,8 @@
 				4C51585C10D28D6600EC0C8D /* DiscoverTestCases.m */,
 				4C5158B010D2914B00EC0C8D /* MasterCardTestCases.h */,
 				4C5158B110D2914B00EC0C8D /* MasterCardTestCases.m */,
+				4C77567710D46E4100A6A7EA /* AmexTestCases.h */,
+				4C77567810D46E4100A6A7EA /* AmexTestCases.m */,
 				4C5158FE10D2975D00EC0C8D /* NumberCleanupTestCases.h */,
 				4C5158FF10D2975D00EC0C8D /* NumberCleanupTestCases.m */,
 				4C51598010D2E05A00EC0C8D /* EmailAddressTestCases.h */,
@@ -314,6 +319,7 @@
 				4C5158B210D2914B00EC0C8D /* MasterCardTestCases.m in Sources */,
 				4C51590010D2975D00EC0C8D /* NumberCleanupTestCases.m in Sources */,
 				4C51598210D2E05A00EC0C8D /* EmailAddressTestCases.m in Sources */,
+				4C77567910D46E4100A6A7EA /* AmexTestCases.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -74,6 +74,8 @@
 	[countryPopUp synchronizeTitleAndSelectedItem];
 	[expirationMonthPopUp selectItemWithTitle:[NSString stringWithFormat:@"%d",[[NSCalendarDate calendarDate] monthOfYear]]];
 	[expirationMonthPopUp synchronizeTitleAndSelectedItem];
+	
+	[cardTypePopUp sizeToFit];
 }
 
 #pragma mark Communication with server-side
@@ -84,7 +86,7 @@
 	cardNumberString = [self cleanNumber:cardNumberString];
 	[cardNumberField setStringValue:cardNumberString];
 	
-	NSString *cardType = [[cardTypePopUp selectedItem] title];
+	NSString *cardType = [[[cardTypePopUp selectedItem] representedObject] valueForKey:kCardTypeCodeKey];
 	if ([cardType isEqualToString:@"Visa"]) {
 		BOOL valid = [self isValidVisaNumber:cardNumberString];
 		if (!valid) {
@@ -107,6 +109,15 @@
 		BOOL valid = [self isValidDiscoverNumber:cardNumberString];
 		if (!valid) {
 			NSAlert *dcAlert = [NSAlert alertWithMessageText:@"Error" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@"The card number entered is not a valid Discover card number"];
+			[dcAlert runModal];
+			return;
+		}
+	}
+	
+	if ([cardType isEqualToString:@"Amex"]) {
+		BOOL valid = [self isValidAmexNumber:cardNumberString];
+		if (!valid) {
+			NSAlert *dcAlert = [NSAlert alertWithMessageText:@"Error" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@"The card number entered is not a valid American Express card number"];
 			[dcAlert runModal];
 			return;
 		}
@@ -312,6 +323,19 @@
 	return YES;
 }
 
+- (BOOL)isValidAmexNumber:(NSString *)numberString {
+	if (!numberString) return NO;
+	if ([numberString length] != 15) return NO;
+	
+	BOOL validLuhn = [self isValidLuhnNumber:numberString];
+	if (!validLuhn) return NO;
+	
+	if (![[numberString substringWithRange:NSMakeRange(0, 2)] isEqualToString:@"34"] &&
+		![[numberString substringWithRange:NSMakeRange(0, 2)] isEqualToString:@"37"]) return NO;
+	
+	return YES;
+}
+
 #pragma mark Form validation
 
 - (void)validateForm:(NSNotification *)note {
@@ -367,6 +391,15 @@
 		[years addObject:[NSString stringWithFormat:@"%d", [thisYear intValue] + yearIndex]];
 	
 	return years;
+}
+
+- (NSArray *)cardTypes {
+	return [NSArray arrayWithObjects:
+	 [NSDictionary dictionaryWithObjectsAndKeys:@"Visa", kCardTypeNameKey, @"Visa", kCardTypeCodeKey,nil],
+	 [NSDictionary dictionaryWithObjectsAndKeys:@"MasterCard", kCardTypeNameKey, @"MasterCard", kCardTypeCodeKey,nil],
+	 [NSDictionary dictionaryWithObjectsAndKeys:@"Discover", kCardTypeNameKey, @"Discover", kCardTypeCodeKey,nil],
+	 [NSDictionary dictionaryWithObjectsAndKeys:@"American Express", kCardTypeNameKey, @"Amex", kCardTypeCodeKey,nil],
+	 nil];
 }
 
 - (NSArray *)countries {

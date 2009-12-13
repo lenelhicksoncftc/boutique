@@ -11,6 +11,8 @@
 
 #define kCountryNameKey @"country"
 #define kCountryCodeKey @"code"
+#define kCardTypeNameKey @"name"
+#define kCardTypeCodeKey @"code"
 
 @interface CocoaBoutique : NSWindowController {
 	id _delegate;
@@ -49,6 +51,7 @@
 - (void)setDelegate:(id)newDelegate;
 - (NSArray *)countries;
 - (void)setCountries:(NSArray *)newArray;
+- (NSArray *)cardTypes;
 
 - (IBAction)processOrder:(id)sender;
 - (IBAction)lookupLicense:(id)sender;
@@ -61,6 +64,7 @@
 - (BOOL)isValidVisaNumber:(NSString *)numberString;
 - (BOOL)isValidDiscoverNumber:(NSString *)numberString;
 - (BOOL)isValidMasterCardNumber:(NSString *)numberString;
+- (BOOL)isValidAmexNumber:(NSString *)numberString;
 - (BOOL)validateNotEmpty: (NSString *)candidate;
 - (BOOL)validateEmail: (NSString *)candidate;
 - (void)validateForm:(NSNotification *)note;
