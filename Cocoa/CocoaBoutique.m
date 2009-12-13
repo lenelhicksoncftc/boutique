@@ -320,6 +320,7 @@
 		[self validateNotEmpty:[lastNameField stringValue]] &&
 		[self validateNotEmpty:[streetAddressField stringValue]] &&
 		[self validateNotEmpty:[cityField stringValue]] &&
+		[self validateNotEmpty:[stateField stringValue]] &&
 		[self validateNotEmpty:[postalField stringValue]] &&
 		[self validateEmail:[emailField stringValue]] &&
 		[self validateNotEmpty:[cardNumberField stringValue]] &&
