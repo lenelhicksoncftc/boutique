@@ -16,28 +16,21 @@
 	CocoaBoutique *cb = [[CocoaBoutique alloc] init];
 	
 	// Positive tests
-	STAssertTrue([cb isValidLuhnNumber:@"4408041234567893"],@"Card number 4408041234567893 should return YES");
-	STAssertTrue([cb isValidLuhnNumber:@"41111111111114"],@"Card number 41111111111114 should return YES");
-	STAssertTrue([cb isValidLuhnNumber:@"4111111111111111"],@"Card number 4111111111111111 should return YES");
-	STAssertTrue([cb isValidLuhnNumber:@"4012888888881881"],@"Card number 4012888888881881 should return YES");
-	STAssertTrue([cb isValidLuhnNumber:@"5555555555554444"],@"Card number 5555555555554444 should return YES");
-	STAssertTrue([cb isValidLuhnNumber:@"5105105105105100"],@"Card number 5105105105105100 should return YES");
-	STAssertTrue([cb isValidLuhnNumber:@"5500000000000004"],@"Card number 5500000000000004 should return YES");
-	STAssertTrue([cb isValidLuhnNumber:@"378282246310005"],@"Card number 378282246310005 should return YES");
-	STAssertTrue([cb isValidLuhnNumber:@"371449635398431"],@"Card number 371449635398431 should return YES");
-	STAssertTrue([cb isValidLuhnNumber:@"378734493671000"],@"Card number 378734493671000 should return YES");
-	STAssertTrue([cb isValidLuhnNumber:@"6011111111111117"],@"Card number 6011111111111117 should return YES");
-	STAssertTrue([cb isValidLuhnNumber:@"6011000990139424"],@"Card number 6011000990139424 should return YES");
-	STAssertTrue([cb isValidLuhnNumber:@"5424000000000015"],@"Card number 5424000000000015 should return YES");
-	STAssertTrue([cb isValidLuhnNumber:@"6011111111111117"],@"Card number 6011111111111117 should return YES");
-	STAssertTrue([cb isValidLuhnNumber:@"0"],@"Card number 0 should return YES");
+	NSArray *goodNumbers = [NSArray arrayWithObjects:@"4408041234567893", @"41111111111114", @"4111111111111111", @"4012888888881881", @"5555555555554444", @"5105105105105100", @"5500000000000004", @"378282246310005", @"371449635398431", @"378734493671000", @"6011111111111117", @"6011000990139424", @"5424000000000015", @"0",nil];
+	
+	for (NSString *num in goodNumbers) {
+		STAssertTrue([cb isValidLuhnNumber:num], @"Card number %@ should test as valid", num);
+	}
 	
 	// Negative tests
 	STAssertFalse([cb isValidLuhnNumber:nil], @"Card number nil should return NO");
-	STAssertFalse([cb isValidLuhnNumber:@"4408041234567890"],@"Card number 4408041234567890 should return NO");
-	STAssertFalse([cb isValidLuhnNumber:@"4111111111111110"],@"Card number 4111111111111110 should return NO");
-	STAssertFalse([cb isValidLuhnNumber:@"5105105105105101"],@"Card number 5105105105105101 should return NO");
 
+	NSArray *badNumbers = [NSArray arrayWithObjects:@"4408041234567890", @"4111111111111110", @"5105105105105101",nil];
+	
+	for (NSString *num in badNumbers) {
+		STAssertFalse([cb isValidLuhnNumber:num], @"Card number %@ should test as invalid", num);
+	}
+	
 	[cb release];
 }
 
