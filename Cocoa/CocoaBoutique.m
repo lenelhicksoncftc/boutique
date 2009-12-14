@@ -260,7 +260,6 @@
 	
 	for (i = length - 1; i < -1; i--) {
 		n = [[numberString substringWithRange:NSMakeRange(i, 1)] intValue];
-		NSLog(@"current digit: %d", n);		
 		if (alternate) {
 			n *= 2;
 			if (n > 9) n = (n % 10) + 1;
@@ -339,7 +338,6 @@
 #pragma mark Form validation
 
 - (void)validateForm:(NSNotification *)note {
-	NSLog(@"validateForm:");
 	if ([self validateNotEmpty:[firstNameField stringValue]] &&
 		[self validateNotEmpty:[lastNameField stringValue]] &&
 		[self validateNotEmpty:[streetAddressField stringValue]] &&
