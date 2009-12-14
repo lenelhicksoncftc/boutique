@@ -15,34 +15,19 @@
 	CocoaBoutique *cb = [[CocoaBoutique alloc] init];
 	
 	// Positive tests
-	STAssertTrue([cb validateEmail:@"fraser@sweeterrhythm.com"],@"Email should be valid");
-	STAssertTrue([cb validateEmail:@"fraser@sweeterrhythm.com.au"],@"Email should be valid");
-	STAssertTrue([cb validateEmail:@"fraser@mail.sweeterrhythm.com.au"],@"Email should be valid");
-	STAssertTrue([cb validateEmail:@"noreply-ads@facebookmail.com"],@"Email should be valid");
-	STAssertTrue([cb validateEmail:@"circadm@ald.lib.co.us"],@"Email should be valid");
-	STAssertTrue([cb validateEmail:@"fraser.hess@sr.com"],@"Email should be valid");
-	STAssertTrue([cb validateEmail:@"NOREPLY@DIRECTV.com"],@"Email should be valid");
-	STAssertTrue([cb validateEmail:@"ayrshire4096@hotmail.com"],@"Email should be valid");
-	STAssertTrue([cb validateEmail:@"1password@gmail.com"],@"Email should be valid");
-	STAssertTrue([cb validateEmail:@"notification+a2_f6aay@facebookmail.com"],@"Email should be valid");
-	STAssertTrue([cb validateEmail:@"qdoba_mexican_grill@marketing.qdoba.com"],@"Email should be valid");
-	STAssertTrue([cb validateEmail:@"number10@petitions.pm.gov.uk"],@"Email should be valid");
-	STAssertTrue([cb validateEmail:@"noreply-ads@facebookmail.com"],@"Email should be valid");
-	STAssertTrue([cb validateEmail:@"noreply-ads@facebookmail.com"],@"Email should be valid");
-	STAssertTrue([cb validateEmail:@"noreply-ads@facebookmail.com"],@"Email should be valid");
-	STAssertTrue([cb validateEmail:@"noreply-ads@facebookmail.com"],@"Email should be valid");
-	STAssertTrue([cb validateEmail:@"noreply-ads@facebookmail.com"],@"Email should be valid");
-
-	// Negative tests
-	STAssertFalse([cb validateEmail:@"frasersweeterrhythm.com"],@"Email isn't valid");
-	STAssertFalse([cb validateEmail:@"fraser@sweeterrhythm"],@"Email isn't valid");
-	STAssertFalse([cb validateEmail:@"DIRECTV <NOREPLY@DIRECTV.com>"],@"Email isn't valid");
-	STAssertFalse([cb validateEmail:@"Abc.@example.com"],@"Email isn't valid");
-	STAssertFalse([cb validateEmail:@"Abc..123@example.com"],@"Email isn't valid");
-	STAssertFalse([cb validateEmail:@"A@b@c@example.com"],@"Email isn't valid");
-	STAssertFalse([cb validateEmail:@"rené@facebook.com"],@"Email isn't valid");
-
+	NSArray *goodEmails = [NSArray arrayWithObjects:@"fraser@sweeterrhythm.com", @"fraser@sweeterrhythm.com.au", @"fraser@mail.sweeterrhythm.com.au", @"noreply-ads@facebookmail.com", @"circadm@ald.lib.co.us", @"fraser.hess@sr.com", @"NOREPLY@DIRECTV.com", @"ayrshire4096@hotmail.com", @"1password@gmail.com", @"notification+a2_f6aay@facebookmail.com", @"qdoba_mexican_grill@marketing.qdoba.com", @"number10@petitions.pm.gov.uk", nil];
 	
+	for (NSString *email in goodEmails) {
+		STAssertTrue([cb validateEmail:email], @"Email address %@ should test as valid", email);
+	}
+	
+	// Negative tests
+	NSArray *badEmails = [NSArray arrayWithObjects:@"frasersweeterrhythm.com", @"fraser@sweeterrhythm", @"DIRECTV <NOREPLY@DIRECTV.com>", @"Abc.@example.com", @"Abc..123@example.com", @"A@b@c@example.com", @"rené@facebook.com", nil];
+	
+	for (NSString *email in badEmails) {
+		STAssertFalse([cb validateEmail:email], @"Email address %@ should test as invalid", email);
+	}
+
 	[cb release];
 }
 
