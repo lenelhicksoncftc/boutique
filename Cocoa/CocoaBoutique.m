@@ -361,7 +361,7 @@
 
 - (BOOL)validateEmail:(NSString *)candidate {
 	if (!candidate || [candidate length] == 0) return NO;
-	NSString *emailRegex = @"[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?";
+	NSString *emailRegex = @"[a-zA-Z0-9!#$%\\&'*+/=?\\^_`\\{|}~-]+(?:\\.[a-z0-9!#$%\\&'*+/=?\\^_`\\{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?";
 	
 	NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
 
