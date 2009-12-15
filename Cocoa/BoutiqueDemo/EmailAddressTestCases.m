@@ -22,7 +22,8 @@
 	}
 	
 	// Negative tests
-	NSArray *badEmails = [NSArray arrayWithObjects:@"frasersweeterrhythm.com", @"fraser@sweeterrhythm", @"DIRECTV <NOREPLY@DIRECTV.com>", @"Abc.@example.com", @"Abc..123@example.com", @"A@b@c@example.com", @"rené@facebook.com", nil];
+	STAssertFalse([cb validateEmail:nil], @"Nil should test as invalid");
+	NSArray *badEmails = [NSArray arrayWithObjects:@"", @"frasersweeterrhythm.com", @"fraser@sweeterrhythm", @"DIRECTV <NOREPLY@DIRECTV.com>", @"Abc.@example.com", @"Abc..123@example.com", @"A@b@c@example.com", @"rené@facebook.com", nil];
 	
 	for (NSString *email in badEmails) {
 		STAssertFalse([cb validateEmail:email], @"Email address %@ should test as invalid", email);

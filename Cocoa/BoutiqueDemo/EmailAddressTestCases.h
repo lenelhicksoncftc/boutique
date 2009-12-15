@@ -13,4 +13,6 @@
 
 }
 
+-(void)testEmailValidation;
+
 @end
