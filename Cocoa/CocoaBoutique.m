@@ -219,7 +219,7 @@
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
 	[serverConnection release], serverConnection = nil;
-	[self processServerResponse:nil];
+	[self processServerResponse:[[NSString stringWithFormat:@"ERROR: %@",[error localizedDescription]] dataUsingEncoding:NSUTF8StringEncoding]];
 	[serverResponseData release], serverResponseData = nil;
 }
 
