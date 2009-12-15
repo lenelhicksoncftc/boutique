@@ -15,7 +15,7 @@
 	CocoaBoutique *cb = [[CocoaBoutique alloc] init];
 	
 	// Positive tests
-	NSArray *goodEmails = [NSArray arrayWithObjects:@"fraser@sweeterrhythm.com", @"fraser@sweeterrhythm.com.au", @"fraser@mail.sweeterrhythm.com.au", @"noreply-ads@facebookmail.com", @"circadm@ald.lib.co.us", @"fraser.hess@sr.com", @"NOREPLY@DIRECTV.com", @"ayrshire4096@hotmail.com", @"1password@gmail.com", @"notification+a2_f6aay@facebookmail.com", @"qdoba_mexican_grill@marketing.qdoba.com", @"number10@petitions.pm.gov.uk", nil];
+	NSArray *goodEmails = [NSArray arrayWithObjects:@"fraser@sweeterrhythm.com", @"fraser@sweeterrhythm.com.au", @"fraser@mail.sweeterrhythm.com.au", @"noreply-ads@facebookmail.com", @"circadm@ald.lib.co.us", @"fraser.hess@sr.com", @"NOREPLY@DIRECTV.com", @"ayrshire4096@hotmail.com", @"1password@gmail.com", @"notification+a2_f6aay@facebookmail.com", @"qdoba_mexican_grill@marketing.qdoba.com", @"number10@petitions.pm.gov.uk", @"fraser&liz@hotmail.com", @"fraser!liz@hotmail.com", @"win$$$@hotmail.com", @"starry*night@hotmail.com", @"face/off@hotmail.com", @"curly{braces}@hotmail.com",@"pipe|this@hotmail.com", @"my~home@gmail.com", @"my=@gmail.com", nil];
 	
 	for (NSString *email in goodEmails) {
 		STAssertTrue([cb validateEmail:email], @"Email address %@ should test as valid", email);
