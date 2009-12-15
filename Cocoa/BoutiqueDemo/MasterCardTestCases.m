@@ -15,18 +15,20 @@
 - (void)testMasterCardNumbers {
 	CocoaBoutique *cb = [[CocoaBoutique alloc] init];
 	// Test valid MasterCard numbers
-	STAssertTrue([cb isValidMasterCardNumber:@"5424000000000015"],@"Card number 5424000000000015 should return YES");
-	STAssertTrue([cb isValidMasterCardNumber:@"5555555555554444"],@"Card number 5555555555554444 should return YES");
-	STAssertTrue([cb isValidMasterCardNumber:@"5105105105105100"],@"Card number 5105105105105100 should return YES");
-	STAssertTrue([cb isValidMasterCardNumber:@"5500000000000004"],@"Card number 5500000000000004 should return YES");
+	NSArray *goodNumbers = [NSArray arrayWithObjects:@"5424000000000015", @"5555555555554444", @"5105105105105100", @"5500000000000004", nil];
 	
-	// Invalid card numbers that look like MasterCard numbers
+	for (NSString *num in goodNumbers) {
+		STAssertTrue([cb isValidMasterCardNumber:num], @"Card number %@ should test as valid", num);
+	}
+	
+	// Invalid card numbers
 	STAssertFalse([cb isValidMasterCardNumber:nil], @"Card number nil should return NO");
-	STAssertFalse([cb isValidMasterCardNumber:@"5105105105105101"],@"Card number 5105105105105101 should return NO");
+	NSArray *badNumbers = [NSArray arrayWithObjects:@"5105105105105101", @"4111111111111111",@"6011111111111117",nil];
 	
-	// Test other cards
-	STAssertFalse([cb isValidMasterCardNumber:@"4111111111111111"],@"Card number 4111111111111111 should return NO");
-	STAssertFalse([cb isValidMasterCardNumber:@"6011111111111117"],@"Card number 6011111111111117 should return NO");
+	for (NSString *num in badNumbers) {
+		STAssertFalse([cb isValidMasterCardNumber:num], @"Card number %@ should test as invalid", num);
+	}
+
 	[cb release];
 }
 
