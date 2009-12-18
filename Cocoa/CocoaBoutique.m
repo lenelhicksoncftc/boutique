@@ -255,11 +255,11 @@
 	
 	NSUInteger length = [numberString length];
 	BOOL alternate = NO;
-	NSUInteger sum = 0;
-	NSUInteger i,n;
+	NSUInteger n,sum = 0;
+	NSInteger counter;
 	
-	for (i = length - 1; i < -1; i--) {
-		n = [[numberString substringWithRange:NSMakeRange(i, 1)] intValue];
+	for (counter = length - 1; counter >= 0; counter--) {
+		n = [[numberString substringWithRange:NSMakeRange(counter, 1)] intValue];
 		if (alternate) {
 			n *= 2;
 			if (n > 9) n = (n % 10) + 1;
