@@ -3,7 +3,7 @@
 
 ### Intro
 
-Cocoa Boutique is an open source framework that lets you add in-app purchase to your Cocoa applications. Replacement for Kagi, eSellerate, Golden Braeburn etc
+Cocoa Boutique is an open source framework that lets you add in-app purchase to your Mac Cocoa applications. Replacement for Kagi, eSellerate, Golden Braeburn etc
 
 ### Process
 
