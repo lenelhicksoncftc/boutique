@@ -59,6 +59,7 @@
 - (IBAction)switchToPurchase:(id)sender;
 - (IBAction)emailTransactionIDs:(id)sender;
 - (void)connectionToScript:(NSString *)script withBody:(NSString *)body indicator:(NSProgressIndicator *)pi;
+- (void)processServerResponse:(NSData *)urlData;
 - (NSString *)cleanNumber:(NSString *)numberString;
 - (BOOL)isValidLuhnNumber:(NSString *)numberString;
 - (BOOL)isValidVisaNumber:(NSString *)numberString;
