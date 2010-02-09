@@ -78,14 +78,16 @@
 	}
 }
 
-#pragma mark Communication with server-side
+#pragma mark Card cleanup
 
-- (IBAction)processOrder:(id)sender {
-	
+- (void)cleanCardNumber {
 	NSString *cardNumberString = [cardNumberField stringValue];
-	cardNumberString = [self cleanNumber:cardNumberString];
+	cardNumberString = [self stripNonDigits:cardNumberString];
 	[cardNumberField setStringValue:cardNumberString];
-	
+}
+
+- (void)checkCardNumberValidity {
+	NSString *cardNumberString = [cardNumberField stringValue];
 	NSString *cardType = [[[cardTypePopUp selectedItem] representedObject] valueForKey:kCardTypeCodeKey];
 	if ([cardType isEqualToString:@"Visa"]) {
 		BOOL valid = [self isValidVisaNumber:cardNumberString];
@@ -122,6 +124,17 @@
 			return;
 		}
 	}
+}
+
+#pragma mark Communication with server-side
+
+- (IBAction)processOrder:(id)sender {
+	
+	[self cleanCardNumber];
+	[self checkCardNumberValidity];
+	
+	NSString *cardType = [[[cardTypePopUp selectedItem] representedObject] valueForKey:kCardTypeCodeKey];
+	NSString *cardNumberString = [cardNumberField stringValue];
 
 	NSString *body = [NSString stringWithFormat:@"product=%@&firstName=%@&lastName=%@&creditCardType=%@&creditCardNumber=%@&expDateMonth=%@&expDateYear=%@&cvv2Number=%@&address1=%@&city=%@&state=%@&postal=%@&country=%@&email=%@&company=%@&phone=%@&coupon=%@",
 	 [[[self delegate] productName] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
@@ -225,7 +238,7 @@
 
 #pragma mark Card number validation
 
-- (NSString *)cleanNumber:(NSString *)numberString {
+- (NSString *)stripNonDigits:(NSString *)numberString {
 	if (!numberString || [numberString length] == 0) return nil;
 	
 	NSMutableString *result = [NSMutableString string];

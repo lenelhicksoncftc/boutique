@@ -60,7 +60,7 @@
 - (IBAction)emailTransactionIDs:(id)sender;
 - (void)connectionToScript:(NSString *)script withBody:(NSString *)body indicator:(NSProgressIndicator *)pi;
 - (void)processServerResponse:(NSData *)urlData;
-- (NSString *)cleanNumber:(NSString *)numberString;
+- (NSString *)stripNonDigits:(NSString *)numberString;
 - (BOOL)isValidLuhnNumber:(NSString *)numberString;
 - (BOOL)isValidVisaNumber:(NSString *)numberString;
 - (BOOL)isValidDiscoverNumber:(NSString *)numberString;
