@@ -16,7 +16,7 @@
 	CocoaBoutique *cb = [[CocoaBoutique alloc] init];
 	
 	// Test valid Visa card numbers
-	NSArray *goodNumbers = [NSArray arrayWithObjects:@"4408041234567893", @"4111111111111111", @"4012888888881881", @"4222222222222",nil];
+	NSArray *goodNumbers = [NSArray arrayWithObjects:@"4408041234567893", @"4111111111111111", @"4012888888881881", @"4222222222222",@"4452571017358008",nil];
 	
 	for (NSString *num in goodNumbers) {
 		STAssertTrue([cb isValidVisaNumber:num], @"Card number %@ should test as valid", num);
