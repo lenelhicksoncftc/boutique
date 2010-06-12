@@ -31,7 +31,7 @@ $dateIndex = 0;
 while ($dateIndex < $days) {
 	$daysAgo = 0-$dateIndex;
 	$daysAgoEnd = $daysAgo + 1;
-	$query = "SELECT SUM(quantity), item, SUM(gross), SUM(refund), name FROM transactions, products WHERE (paymentDate >= DATE_ADD(DATE(NOW()),interval $daysAgo day) AND paymentDate < DATE_ADD(DATE(NOW()), INTERVAL $daysAgoEnd DAY)) AND paypaltransactionid is not null AND paypaltransactionid != '' AND transactions.item = products.id GROUP BY item ORDER BY name";
+	$query = "SELECT SUM(quantity), item, SUM(gross), SUM(refund), name FROM transactions, products WHERE (paymentDate >= DATE_ADD(DATE(NOW()),interval $daysAgo day) AND paymentDate < DATE_ADD(DATE(NOW()), INTERVAL $daysAgoEnd DAY)) AND gross > 0 AND transactions.item = products.id GROUP BY item ORDER BY name";
 	$result = mysql_query($query);
 	$numTransactions = mysql_num_rows($result);
 
@@ -43,20 +43,20 @@ while ($dateIndex < $days) {
 		$sales = 0;
 		$gross = 0.00;
 	}
-	
+
 	$displayDate = date('D, M j, Y',time()-($dateIndex*24*60*60));
 	echo("<p><strong>$displayDate: $sales sales; \$$gross</strong>");
-	
+
 	if ($numTransactions > 0) {
 		$detailIndex=0;
 		while ($detailIndex < $numTransactions) {
-			
+				
 			$count = mysql_result($result, $detailIndex, 0);
 			$item = mysql_result($result, $detailIndex, 4);
 			$total = mysql_result($result, $detailIndex, 2);
 			$refunds = mysql_result($result, $detailIndex, 3);
 			echo("<br>&nbsp;&nbsp;-&nbsp;$count&nbsp;&nbsp;$item&nbsp;&nbsp;\$$total (\$$refunds in refunds)");
-			
+				
 			$detailIndex++;
 		}
 	}
@@ -67,9 +67,9 @@ while ($dateIndex < $days) {
 
 
 ?>
-</div> <!-- column -->
-<div class="column">
-<?
+</div>
+<!-- column -->
+<div class="column"><?
 
 $months = 18;
 
@@ -88,8 +88,8 @@ while ($dateIndex < $months) {
 	$queryToDate = date('Y-m-d', $toDate);
 
 	// Overall sales
-	
-	$query = "SELECT SUM(quantity), SUM(gross), sum(refund) FROM transactions WHERE paymentDate >= '$queryFromDate' AND paymentDate < '$queryToDate' AND paypaltransactionid is not null AND paypaltransactionid != ''";
+
+	$query = "SELECT SUM(quantity), SUM(gross), sum(refund) FROM transactions WHERE paymentDate >= '$queryFromDate' AND paymentDate < '$queryToDate' AND gross > 0";
 
 	$grossResult = mysql_query($query);
 	$queryDate = date('M Y', $fromDate);
@@ -100,7 +100,7 @@ while ($dateIndex < $months) {
 
 	$todayDisplay = date('M j, Y');
 	echo("<p><strong>$queryDate: " .number_format($sales). " sales; \$" .number_format($gross). " gross (\$" .number_format($refunds). " in Refunds)</strong>");
-	
+
 	$dateIndex++;
 }
 
