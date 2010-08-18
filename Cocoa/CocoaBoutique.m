@@ -399,7 +399,7 @@
 	[years addObject:thisYear];
 	
 	int yearIndex;
-	for (yearIndex = 1; yearIndex <= 7; yearIndex++)
+	for (yearIndex = 1; yearIndex <= 10; yearIndex++)
 		[years addObject:[NSString stringWithFormat:@"%d", [thisYear intValue] + yearIndex]];
 	
 	return years;
