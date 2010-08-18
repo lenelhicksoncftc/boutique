@@ -86,52 +86,40 @@
 	[cardNumberField setStringValue:cardNumberString];
 }
 
-- (void)checkCardNumberValidity {
+- (BOOL)isEnteredCardNumberValid {
 	NSString *cardNumberString = [cardNumberField stringValue];
 	NSString *cardType = [[[cardTypePopUp selectedItem] representedObject] valueForKey:kCardTypeCodeKey];
+	
 	if ([cardType isEqualToString:@"Visa"]) {
-		BOOL valid = [self isValidVisaNumber:cardNumberString];
-		if (!valid) {
-			NSAlert *vcAlert = [NSAlert alertWithMessageText:@"Error" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@"The card number entered is not a valid Visa card number"];
-			[vcAlert runModal];
-			return;
-		}
+		return [self isValidVisaNumber:cardNumberString];
 	}
 	
 	if ([cardType isEqualToString:@"MasterCard"]) {
-		BOOL valid = [self isValidMasterCardNumber:cardNumberString];
-		if (!valid) {
-			NSAlert *mcAlert = [NSAlert alertWithMessageText:@"Error" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@"The card number entered is not a valid MasterCard number"];
-			[mcAlert runModal];
-			return;
-		}
+		return [self isValidMasterCardNumber:cardNumberString];
 	}
 	
 	if ([cardType isEqualToString:@"Discover"]) {
-		BOOL valid = [self isValidDiscoverNumber:cardNumberString];
-		if (!valid) {
-			NSAlert *dcAlert = [NSAlert alertWithMessageText:@"Error" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@"The card number entered is not a valid Discover card number"];
-			[dcAlert runModal];
-			return;
-		}
+		return [self isValidDiscoverNumber:cardNumberString];
 	}
 	
 	if ([cardType isEqualToString:@"Amex"]) {
-		BOOL valid = [self isValidAmexNumber:cardNumberString];
-		if (!valid) {
-			NSAlert *dcAlert = [NSAlert alertWithMessageText:@"Error" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@"The card number entered is not a valid American Express card number"];
-			[dcAlert runModal];
-			return;
-		}
+		return [self isValidAmexNumber:cardNumberString];
 	}
+	
+	return NO;
 }
 
 #pragma mark Communication with server-side
 
 - (IBAction)processOrder:(id)sender {
 	
-	[self cleanCardNumber];
-	[self checkCardNumberValidity];
+	[self cleanCardNumber];	
+	if (![self isEnteredCardNumberValid]) {
+		NSString *errorMessage = [NSString stringWithFormat:@"The card number entered is not a valid %@ card number", [[[cardTypePopUp selectedItem] representedObject] valueForKey:kCardTypeNameKey]];
+		NSAlert *dcAlert = [NSAlert alertWithMessageText:@"Error" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:errorMessage];
+		[dcAlert runModal];
+		return;
+	}
 	
 	NSString *cardType = [[[cardTypePopUp selectedItem] representedObject] valueForKey:kCardTypeCodeKey];
 	NSString *cardNumberString = [cardNumberField stringValue];
