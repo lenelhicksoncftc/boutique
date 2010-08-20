@@ -230,7 +230,6 @@
 	
 	NSScanner *scanner = [NSScanner scannerWithString:numberString];
 	while (![scanner isAtEnd]) {
-		NSUInteger position;
 		NSString *goodString;
 		
 		//---- search for good string
@@ -241,7 +240,6 @@
 		//---- one step if it's possible !
 		if ([scanner scanLocation] < [numberString length]) {
 			[scanner setScanLocation:[scanner scanLocation] + 1];
-			position = [scanner scanLocation];
 		}
 	}
 	
