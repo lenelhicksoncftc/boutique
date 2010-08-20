@@ -16,10 +16,7 @@
 
 - (id)init {
 	self = [super initWithWindowNibName:@"Boutique"];
-	if (self != nil) {
-		_countries = nil;
-		_delegate = nil;
-	}
+	if (!self) return nil;
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(validateForm:) name:NSControlTextDidChangeNotification object:nil];
 	return self;
 }
